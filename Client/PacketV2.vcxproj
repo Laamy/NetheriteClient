@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{d6b8cfbe-8a00-4b36-b146-94fa5e224129}</ProjectGuid>
+    <RootNamespace>PacketV2</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Client</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;Packetv2_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;Packetv2_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;Packetv2_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;Packetv2_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Memory\Hooks\GameHook.h" />
+    <ClInclude Include="Memory\Hooks\VirtualHook.h" />
+    <ClInclude Include="Memory\SDK\Block.h" />
+    <ClInclude Include="Memory\SDK\BlockSource.h" />
+    <ClInclude Include="Memory\SDK\CompoundTag.h" />
+    <ClInclude Include="Memory\SDK\Dimension.h" />
+    <ClInclude Include="Memory\SDK\GameMode.h" />
+    <ClInclude Include="Memory\SDK\HIDController.h" />
+    <ClInclude Include="Memory\SDK\Level.h" />
+    <ClInclude Include="Memory\SDK\Weather.h" />
+    <ClInclude Include="Netherite\Command\Command.h" />
+    <ClInclude Include="Netherite\Command\CommandManager.h" />
+    <ClInclude Include="Netherite\Command\Commands\TestCommand.h" />
+    <ClInclude Include="Netherite\Handlers\SubRenderContextHandle.h" />
+    <ClInclude Include="Netherite\Math\AABB.h" />
+    <ClInclude Include="Netherite\Math\CaretMeasureData.h" />
+    <ClInclude Include="Netherite\Math\DeviceIDGenerator.h" />
+    <ClInclude Include="Netherite\Math\ExtraKeys.h" />
+    <ClInclude Include="Netherite\Math\GameCursors.h" />
+    <ClInclude Include="Netherite\Math\UIColor.h" />
+    <ClInclude Include="Netherite\Math\Vector2.h" />
+    <ClInclude Include="Netherite\Math\Vector3.h" />
+    <ClInclude Include="Netherite\Math\Vector3i.h" />
+    <ClInclude Include="Netherite\Math\Vector4.h" />
+    <ClInclude Include="Netherite\Module\Module.h" />
+    <ClInclude Include="Netherite\Module\ModuleManager.h" />
+    <ClInclude Include="Memory\MCM.h" />
+    <ClInclude Include="Memory\SDK\Actor.h" />
+    <ClInclude Include="Memory\SDK\BitmapFont.h" />
+    <ClInclude Include="Memory\SDK\ClientInstance.h" />
+    <ClInclude Include="Memory\SDK\GuiData.h" />
+    <ClInclude Include="Memory\SDK\MinecraftGame.h" />
+    <ClInclude Include="Memory\SDK\MinecraftUIRenderContext.h" />
+    <ClInclude Include="Memory\SDK\SubSDK\TextHolder.h" />
+    <ClInclude Include="Memory\Utils\DrawUtils.h" />
+    <ClInclude Include="Netherite\Module\ModuleOption.h" />
+    <ClInclude Include="Netherite\Module\ModuleSettings\ModuleSetting.h" />
+    <ClInclude Include="Netherite\Module\ModuleSettings\ModuleSlider.h" />
+    <ClInclude Include="Netherite\Module\Modules\Aimbot.h" />
+    <ClInclude Include="Netherite\Module\Modules\Animations.h" />
+    <ClInclude Include="Netherite\Module\Modules\AntiImmobile.h" />
+    <ClInclude Include="Netherite\Module\Modules\ArrayList.h" />
+    <ClInclude Include="Netherite\Module\Modules\AutoClicker.h" />
+    <ClInclude Include="Netherite\Module\Modules\Derp.h" />
+    <ClInclude Include="Netherite\Module\Modules\FastStop.h" />
+    <ClInclude Include="Netherite\Module\Modules\Hitbox.h" />
+    <ClInclude Include="Netherite\Module\Modules\Killaura.h" />
+    <ClInclude Include="Netherite\Module\Modules\KillInsults.h" />
+    <ClInclude Include="Netherite\Module\Modules\LongJump.h" />
+    <ClInclude Include="Netherite\Module\Modules\NoSwing.h" />
+    <ClInclude Include="Netherite\Module\Modules\Speed.h" />
+    <ClInclude Include="Netherite\Module\Modules\NoLagBack.h" />
+    <ClInclude Include="Netherite\Module\Modules\FastPlace.h" />
+    <ClInclude Include="Netherite\Module\Modules\Reach.h" />
+    <ClInclude Include="Netherite\Module\Modules\Scaffold.h" />
+    <ClInclude Include="Netherite\Module\Modules\Sprint.h" />
+    <ClInclude Include="Netherite\Module\Modules\ClickGUI.h" />
+    <ClInclude Include="Netherite\Module\Modules\CustomCursor.h" />
+    <ClInclude Include="Netherite\Module\Modules\Flight.h" />
+    <ClInclude Include="Netherite\Module\Modules\Step.h" />
+    <ClInclude Include="Netherite\Module\Modules\TargetHUD.h" />
+    <ClInclude Include="Netherite\Module\Modules\TestModule.h" />
+    <ClInclude Include="Netherite\Module\Modules\Velocity.h" />
+    <ClInclude Include="Netherite\Module\Modules\Watermark.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\minhook.1.3.3\build\native\minhook.targets" Condition="Exists('..\packages\minhook.1.3.3\build\native\minhook.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\minhook.1.3.3\build\native\minhook.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\minhook.1.3.3\build\native\minhook.targets'))" />
+  </Target>
+</Project>
