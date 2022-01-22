@@ -141,7 +141,7 @@ float GameModeCallback(GameMode* gm) {
         if (mod->enabled && clientInst->getLocalPlayer() != nullptr)
             mod->onGameTick(gm);
 
-    for (auto mod : moduleManager.modules)
+    for (auto mod : moduleManager.modules) 
         if (mod->enabled && mod->name == "BlockReach")
             return 255;
     return 6;
