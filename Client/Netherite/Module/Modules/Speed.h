@@ -30,7 +30,7 @@ public:
             d = keymap['D'];
 
         bool pressed = clientInst->mcGame->canUseMoveKeys() && (w || a || s || d);
-        if (pressed && *player->onGround()&& (float)*moduleSettings[0]->getEnumStack() != 4)
+        if (pressed && *player->onGround()&& moduleSettings[0]->currentIndex != 4)
             player->jumpFromGround();
         else if (pressed && *player->onGround())
             player->getVelocity()->y = 0.3f;
@@ -87,7 +87,7 @@ public:
             calcYaw -= 90.f;
         }
         auto calcYawF = calcYaw * (3.1415927f / 180);
-        if (pressed && (float)*moduleSettings[0]->getEnumStack() == 4 && player->onGround()) {
+        if (pressed && moduleSettings[0]->currentIndex == 4 && player->onGround()) {
             player->getVelocity()->x = cos(calcYawF) * 0.32f;
             player->getVelocity()->z = sin(calcYawF) * 0.32f;
         }

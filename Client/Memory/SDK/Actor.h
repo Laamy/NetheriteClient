@@ -520,7 +520,7 @@ public:
 
 	auto getFallDistance() {
 		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("C7 83 ? ? ? ? ? ? ? ? 48 8B 4C 24 48") + 2);
-		return reinterpret_cast<int*>((uintptr_t)(this) + offset);
+		return reinterpret_cast<float*>((uintptr_t)(this) + offset);
 	};
 
 	auto onGround() {
@@ -531,6 +531,16 @@ public:
 	auto onGround2() {
 		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("C7 83 ? ? ? ? ? ? ? ? 48 8B 4C 24 48") + 2);
 		return reinterpret_cast<bool*>((uintptr_t)(this) + offset + 0x5);
+	};
+
+	auto getSlowDown() {
+		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("41 89 80 ? ? ? ? 8B 42 04 41 89 80 ? ? ? ? 8B 42 08 41 89 80 ? ? ? ? C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC 48 8B 41 ? 48 05") + 3);
+		return reinterpret_cast<Vector3*>((uintptr_t)(this) + offset);
+	};
+
+	auto getBlocksTraveled() {
+		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("41 89 80 ? ? ? ? 8B 42 04 41 89 80 ? ? ? ? 8B 42 08 41 89 80 ? ? ? ? C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC 48 8B 41 ? 48 05") + 3);
+		return reinterpret_cast<float*>((uintptr_t)(this) + offset + sizeof(Vector3));
 	};
 
 	auto getPosition() {

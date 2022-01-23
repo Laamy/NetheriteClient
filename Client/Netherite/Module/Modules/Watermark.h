@@ -6,15 +6,15 @@ public:
 	Watermark() : Module("Watermark", "Visual", "Displays watermark", GameInput::KEY_NONE, true) 
 	{
 		addSetting("Mode", std::vector<std::string> {
-			"Normal", "New"
+			"CS:GO", "Text"
 		});
 		renderInArraylist = false;
 	};
 
-	std::string name = "P";
-	std::string name2 = "acket Client";
+	std::string name = "N";
+	std::string name2 = "etherite - v1.0";
 
-	TextHolder aids = TextHolder(TextInput::Merge("%s%s%s", TextInput::Bold + name, TextInput::Reset, TextInput::White + name2, name2.c_str()));
+	TextHolder aids = TextHolder(TextInput::Merge("%s%s%s%s%s", TextInput::Bold, name, TextInput::Reset, TextInput::White, name2, name2.c_str()));
 
 	void onThirdFrameRender(DrawUtils* renderer) override 
 	{
@@ -26,8 +26,8 @@ public:
 		switch (moduleSettings[0]->currentIndex) 
 		{
 		case 0: // Normal
-			renderer->fillRectangle(Vector2(2, 4), Vector2(72, 16), UIColor(0, 0, 0), 0.6f);
-			renderer->fillRectangle(Vector2(1.5, 2), Vector2(73, 2), color, 1.f);
+			renderer->fillRectangle(Vector2(2, 4), Vector2(89, 16), UIColor(0, 0, 0), 0.6f);
+			renderer->fillRectangle(Vector2(1.5, 2), Vector2(90, 2), color, 1.f);
 			renderer->setShadow(true);
 			renderer->drawText(Vector2(6, 7.5), color, textStr, 1.f);
 			renderer->setShadow(false);

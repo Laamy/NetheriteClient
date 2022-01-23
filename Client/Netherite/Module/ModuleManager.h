@@ -2,7 +2,6 @@
 
 #include "Netherite/Module/Modules/AntiImmobile.h"
 #include "Netherite/Module/Modules/CustomCursor.h"
-#include "Netherite/Module/Modules/KillInsults.h"
 #include "Netherite/Module/Modules/AutoClicker.h"
 #include "Netherite/Module/Modules/TestModule.h"
 #include "Netherite/Module/Modules/Animations.h"
@@ -10,7 +9,6 @@
 #include "Netherite/Module/Modules/FastPlace.h"
 #include "Netherite/Module/Modules/ArrayList.h"
 #include "Netherite/Module/Modules/Watermark.h"
-#include "Netherite/Module/Modules/TargetHUD.h"
 #include "Netherite/Module/Modules/ClickGUI.h"
 #include "Netherite/Module/Modules/Velocity.h"
 #include "Netherite/Module/Modules/Scaffold.h"
@@ -47,7 +45,6 @@ public:
 		modules.push_back(new Animations());
 		modules.push_back(new Watermark());
 		modules.push_back(new ArrayList());
-		modules.push_back(new TargetHUD());
 		modules.push_back(new ClickGUI());
 
 		// Movement
@@ -60,7 +57,6 @@ public:
 		modules.push_back(new Step());
 
 		// Player
-		modules.push_back(new KillInsults());
 		modules.push_back(new FastPlace());
 		modules.push_back(new Scaffold());
 		modules.push_back(new NoSwing());
