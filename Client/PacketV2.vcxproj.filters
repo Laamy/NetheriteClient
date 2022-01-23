@@ -66,6 +66,8 @@
     <ClInclude Include="Netherite\Module\Modules\Velocity.h" />
     <ClInclude Include="Netherite\Module\Modules\Watermark.h" />
     <ClInclude Include="Netherite\Module\Modules\Aimbot.h" />
+    <ClInclude Include="Netherite\Module\Modules\NoHurtCam.h" />
+    <ClInclude Include="Netherite\Module\Modules\NoSlow.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

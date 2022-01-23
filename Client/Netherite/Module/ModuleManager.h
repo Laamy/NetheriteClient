@@ -9,6 +9,7 @@
 #include "Netherite/Module/Modules/FastPlace.h"
 #include "Netherite/Module/Modules/ArrayList.h"
 #include "Netherite/Module/Modules/Watermark.h"
+#include "Netherite/Module/Modules/NoHurtCam.h"
 #include "Netherite/Module/Modules/ClickGUI.h"
 #include "Netherite/Module/Modules/Velocity.h"
 #include "Netherite/Module/Modules/Scaffold.h"
@@ -19,6 +20,7 @@
 #include "Netherite/Module/Modules/Flight.h"
 #include "Netherite/Module/Modules/Sprint.h"
 #include "Netherite/Module/Modules/Hitbox.h"
+#include "Netherite/Module/Modules/NoSlow.h"
 #include "Netherite/Module/Modules/Aimbot.h"
 #include "Netherite/Module/Modules/Speed.h"
 #include "Netherite/Module/Modules/Reach.h"
@@ -46,6 +48,7 @@ public:
 		modules.push_back(new Watermark());
 		modules.push_back(new ArrayList());
 		modules.push_back(new ClickGUI());
+		modules.push_back(new NoHurtCam());
 
 		// Movement
 		modules.push_back(new Velocity());
@@ -59,6 +62,7 @@ public:
 		// Player
 		modules.push_back(new FastPlace());
 		modules.push_back(new Scaffold());
+		modules.push_back(new NoSlow());
 		modules.push_back(new NoSwing());
 
 		// Exploit
