@@ -538,6 +538,11 @@ public:
 		return reinterpret_cast<Vector3*>((uintptr_t)(this) + offset);
 	};
 
+	auto getHurtTime() {
+		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("66 ? ? 80 ? ? ? ? ? ? C0 F3 ? ? 81") + 4);
+		return reinterpret_cast<Vector3*>((uintptr_t)(this) + offset);
+	};
+
 	auto getBlocksTraveled() {
 		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("41 89 80 ? ? ? ? 8B 42 04 41 89 80 ? ? ? ? 8B 42 08 41 89 80 ? ? ? ? C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC 48 8B 41 ? 48 05") + 3);
 		return reinterpret_cast<float*>((uintptr_t)(this) + offset + sizeof(Vector3));
