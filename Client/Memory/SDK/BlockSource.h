@@ -1,11 +1,15 @@
 #pragma once
 
+class BlockSourceListener;
+class ActorType;
+class Bounds;
+
 class BlockSource {
 public:
-	virtual void addListener(class BlockSourceListener&);
-	virtual void removeListener(class BlockSourceListener&);
-	virtual void fetchEntities(class ActorType, AABB const&, Actor const*);
-	virtual void hasChunksAt(class Bounds const&);
+	virtual void addListener(BlockSourceListener&);
+	virtual void removeListener(BlockSourceListener&);
+	virtual void fetchEntities(ActorType, AABB const&, Actor const*);
+	virtual void hasChunksAt(Bounds const&);
 	virtual void hasChunksAt(Vector3i const&, int);
 	virtual void hasChunksAt(AABB const&);
 	virtual Block getBlock(int, int, int);

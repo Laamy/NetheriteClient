@@ -593,7 +593,12 @@ public:
 		return reinterpret_cast<float*>((uintptr_t)(this) + offset);
 	};
 
-	auto getStepInformation() { //
+	auto getFieldOfView() {
+		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("F3 ? ? B3 ? ? ? ? ? ? C6 ? ? 74 24 40 48 83 C4 ? 5B") + 4);
+		return reinterpret_cast<float*>((uintptr_t)(this) + offset);
+	};
+
+	auto getStepInformation() {
 		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("F3 ? ? 80 ? ? ? ? C3 CC CC CC 48 8B 41 10 88 90 ? ? ? ? C3 CC CC CC CC CC 48 8B 41 10 ? ? 80 ? ? ? ? C3 CC CC CC CC 48 8B 41 10") + 4);
 		return reinterpret_cast<Vector2*>((uintptr_t)(this) + offset);
 	};

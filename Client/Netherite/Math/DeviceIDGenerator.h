@@ -5,7 +5,7 @@
 
 class DeviceIDGenerator { // I'll finish this later w/ founder
 public:
-    std::string generate_uuid(uintptr_t seed) {
+    const static std::string generate_uuid(uintptr_t seed) {
         std::mt19937                    gen(seed);
         std::uniform_int_distribution<> dis(0, 15);
         std::uniform_int_distribution<> dis2(8, 11);
@@ -27,7 +27,10 @@ public:
         return ss.str();
     };
 
-    void ChangeDeviceID(uintptr_t seed) {
-//basically we gen a uuid, then replace our currentdid with it. if we can modify login packets we can do it there, otherwise we'll have to modify the profile one.
+    const static void ChangeDeviceID(uintptr_t seed) {
+        auto base = (uintptr_t)(GetModuleHandleA("Minecraft.Windows.exe")) + 0x0421B218;
+        auto didPtr = MCM::findMultiLvlPtr(base, { 0x0, 0x20, 0x0 });
+
+        MCM::setString((void*)didPtr, TextHolder(generate_uuid(seed)), 1080);
     }
 };

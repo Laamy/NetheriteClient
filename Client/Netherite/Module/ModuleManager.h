@@ -5,6 +5,7 @@
 #include "Netherite/Module/Modules/AutoClicker.h"
 #include "Netherite/Module/Modules/TestModule.h"
 #include "Netherite/Module/Modules/Animations.h"
+#include "Netherite/Module/Modules/DIDChanger.h"
 #include "Netherite/Module/Modules/NoLagBack.h"
 #include "Netherite/Module/Modules/FastPlace.h"
 #include "Netherite/Module/Modules/ArrayList.h"
@@ -21,11 +22,11 @@
 #include "Netherite/Module/Modules/Sprint.h"
 #include "Netherite/Module/Modules/Hitbox.h"
 #include "Netherite/Module/Modules/NoSlow.h"
-#include "Netherite/Module/Modules/Aimbot.h"
 #include "Netherite/Module/Modules/Speed.h"
 #include "Netherite/Module/Modules/Reach.h"
 #include "Netherite/Module/Modules/Step.h"
 #include "Netherite/Module/Modules/Derp.h"
+#include "Netherite/Module/Modules/Zoom.h"
 
 class ModuleManager
 {
@@ -36,7 +37,6 @@ public:
 	void Initialize()
 	{
 		// Combat
-		modules.push_back(new Aimbot());
 		modules.push_back(new AutoClicker());
 		modules.push_back(new Killaura());
 		modules.push_back(new Hitbox());
@@ -47,8 +47,9 @@ public:
 		modules.push_back(new Animations());
 		modules.push_back(new Watermark());
 		modules.push_back(new ArrayList());
-		modules.push_back(new ClickGUI());
 		modules.push_back(new NoHurtCam());
+		modules.push_back(new ClickGUI());
+		modules.push_back(new Zoom());
 
 		// Movement
 		modules.push_back(new Velocity());
@@ -57,26 +58,25 @@ public:
 		modules.push_back(new Flight());
 		modules.push_back(new Sprint());
 		modules.push_back(new Speed());
-		modules.push_back(new Step());
+		//modules.push_back(new Step());
 
 		// Player
 		modules.push_back(new FastPlace());
 		modules.push_back(new Scaffold());
-		modules.push_back(new NoSlow());
 		modules.push_back(new NoSwing());
+		modules.push_back(new NoSlow());
 
 		// Exploit
 		modules.push_back(new AntiImmobile());
+		//modules.push_back(new DIDChanger());
 		modules.push_back(new NoLagBack());
 
 		// Misc
-		modules.push_back(new Module("BlockReach", "Misc", "Lets you place blocks father away retard"));
 		modules.push_back(new TestModule());
+		modules.push_back(new Module("BlockReach", "Misc", "Lets you place blocks father away retard"));
 		modules.push_back(new Derp());
 
 		updateCategoriesArray(); // fix up categories array
-
-		// I'll sort them later
 	}
 
 	Module* getModuleByName(const char* str) {

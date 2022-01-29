@@ -16,6 +16,9 @@
 // import key math
 #include "Netherite/Math/ExtraKeys.h"
 
+// import subSDK
+#include "Memory/SDK/SubSDK/TextHolder.h"
+
 // import other
 #include <MinHook.h>
 #include "Memory/MCM.h"
@@ -34,6 +37,15 @@ void DestoryClient() {
     FreeLibraryAndExitThread(DLLModule, 0);
 }
 
+#include "Netherite/Notifications/Notification.h"
+
+std::vector<Notification> notifications;
+
+void CreateNotification(const char* text, float timer = 5)
+{
+    notifications.push_back(Notification(text, timer));
+}
+
 // import math
 // AABB.h
 #include "Netherite/Math/CaretMeasureData.h"
@@ -45,9 +57,6 @@ void DestoryClient() {
 #include "Netherite/Math/DeviceIDGenerator.h"
 
 #include "Netherite/Math/AABB.h" // requires Vector3
-
-// import subSDK
-#include "Memory/SDK/SubSDK/TextHolder.h"
 
 // hooks
 #include "Memory/Hooks/VirtualHook.h"
@@ -143,7 +152,7 @@ float GameModeCallback(GameMode* gm) {
 
     for (auto mod : moduleManager.modules) 
         if (mod->enabled && mod->name == "BlockReach")
-            return 255;
+            return 256;
     return 6;
 }
 
@@ -224,6 +233,15 @@ void KeymapCallback(uint64_t key, bool held) {
             }
         }
 
+    for (auto note : notifications)
+    {
+        if (note.timer == 0) {
+            note.fade -= 1;
+        }
+        //if (note.fade = 60)
+        //    notifications.
+    }
+
     _SendKey(key, held);
     keymap[key] = held;
 }
@@ -258,6 +276,10 @@ void onTickTimer(LPVOID a) {
         for (auto mod : moduleManager.modules)
             if (mod->enabled)
                 mod->onTick();
+
+        for (auto note : notifications)
+            if (note.timer != 0)
+                note.timer -= 1 / 20; // 20 ticks :)
     }
 };
 

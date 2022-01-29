@@ -36,6 +36,16 @@ public:
         VirtualProtect(dst, sizeof(float), oldprotect, &oldprotect);
     }
 
+    static void setString(void* dst, TextHolder src, int size) {
+        DWORD oldprotect;
+        VirtualProtect(dst, size, PAGE_EXECUTE_READWRITE, &oldprotect);
+
+        auto addr = reinterpret_cast<TextHolder*> (dst);
+        addr->setText(src.getText());
+
+        //VirtualProtect(dst, size, oldprotect, &oldprotect);
+    }
+
     static uintptr_t findSig(const char* sig) {
         const char* pattern = sig;
         uintptr_t firstMatch = 0;

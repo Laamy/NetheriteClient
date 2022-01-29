@@ -22,6 +22,8 @@ public:
 
 	bool keybindTogglable = true; // if the keybind can be used to toggle this module
 	bool renderInArraylist = true; // if it shows in arraylist or not
+	bool renderSettings = false; // render settings underneath the module
+	bool renderSliders = false; // render sliders underneath the module
 	std::string renderName; // custom render name just like in java clients
 	std::string renderCategory; // Allow moving what category a module is in or even make new categories for them
 

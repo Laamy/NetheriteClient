@@ -48,7 +48,7 @@ public:
 		if (getLocalPlayer() == nullptr) return;
 		// testing
 
-		getLocalPlayer()->displayClientMessage(TextInput::Merge("%s[Packet]%s %s", TextInput::Gray, TextInput::Reset, txt));
+		getLocalPlayer()->displayClientMessage(TextInput::Merge("%s[Netherite]%s %s", TextInput::Gray, TextInput::Reset, txt));
 	};
 
 public: // custom

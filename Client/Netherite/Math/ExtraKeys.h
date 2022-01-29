@@ -102,6 +102,18 @@ public: // keys
 	static const uintptr_t KEY_F10 = 121; // F10 key
 	static const uintptr_t KEY_F11 = 122; // F11 key
 	static const uintptr_t KEY_F12 = 123; // F12 key
+	static const uintptr_t KEY_F13 = 124; // F13 key
+	static const uintptr_t KEY_F14 = 125; // F14 key
+	static const uintptr_t KEY_F15 = 126; // F15 key
+	static const uintptr_t KEY_F16 = 127; // F16 key
+	static const uintptr_t KEY_F17 = 128; // F17 key
+	static const uintptr_t KEY_F18 = 129; // F18 key
+	static const uintptr_t KEY_F19 = 130; // F19 key
+	static const uintptr_t KEY_F20 = 131; // F20 key
+	static const uintptr_t KEY_F21 = 132; // F21 key
+	static const uintptr_t KEY_F22 = 133; // F22 key
+	static const uintptr_t KEY_F23 = 134; // F23 key
+	static const uintptr_t KEY_F24 = 135; // F24 key
 
 	static const uintptr_t KEY_NUMPAD = 144; // Numpad key
 	static const uintptr_t KEY_SCROLL_LOCK = 145; // ScrollLock key

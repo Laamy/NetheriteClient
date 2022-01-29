@@ -7,7 +7,7 @@ public:
 		"Vanilla",
 		"Airwalk",
 		"Hive",
-		"Bounce" }, 0);
+		"NG" }, 0);
 	};
 
 	float effectiveValue = 0;
@@ -104,12 +104,17 @@ public:
 				player->getVelocity()->z *= 2.5f;
 			}
 			break;
-		case 3: // Bounce
-			if (player->getVelocity()->y <= -.5f) {
-				player->getVelocity()->y = .03f;
+		case 3: // NG
+			if (fallDistance >= 6) {
 
-				player->getPosition()->lower.y += *player->getFallDistance();
-				player->getPosition()->upper.y += *player->getFallDistance();
+				auto pos = *player->getPosition();
+				pos.lower.y += fallDistance;
+				pos.upper.y += fallDistance;
+				*player->getPosition() = pos;
+
+				*player->getFallDistance() = 0;
+
+				player->getVelocity()->y = 0;
 
 				player->getVelocity()->x *= 2.5f;
 				player->getVelocity()->z *= 2.5f;

@@ -7,7 +7,7 @@ class Actor;
 class GameMode {
 private:
 	virtual void Construtor1();
-	virtual void Construtor();
+	//virtual void Construtor();
 public:
 	virtual void startDestroyBlock(Vector3i const&, byte, bool&);
 	virtual void destroyBlock(Vector3i const&, byte);

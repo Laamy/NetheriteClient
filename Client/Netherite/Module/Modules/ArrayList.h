@@ -13,7 +13,6 @@ public:
 		bool operator()(Module* mod1, Module* mod2)
 		{
 			return mod1->length > mod2->length;
-			
 		}
 	};
 

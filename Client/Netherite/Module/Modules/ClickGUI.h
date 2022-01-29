@@ -6,7 +6,15 @@ public:
 		renderInArraylist = false;
 	};
 
+	static const struct ClickGUISortingArgs {
+		bool operator()(Module* mod1, Module* mod2)
+		{
+			return mod1->name.length() > mod2->name.length();
+		}
+	};
+
 	std::map<std::string, bool> modulesLastState;
+	std::map<std::string, bool> modulesLastRightState;
 
 	std::map<int, bool> indexedState;
 	std::map<int, bool> indexedBState;
@@ -15,6 +23,8 @@ public:
 
 	void onThirdFrameRender(DrawUtils* renderer) override {
 		if (controllerInst != nullptr && clientInst != nullptr && clientInst->getLocalPlayer() != nullptr && _modules != nullptr) {
+
+			std::sort((*_modules).begin(), (*_modules).end(), ClickGUISortingArgs());
 
 			renderer->drawBackground(UIColor(0, 0, 0, 0.3f * 255));
 
@@ -63,7 +73,13 @@ public:
 						else mod->onDisable();
 					}
 
+					if (buttonStates[1] && !modulesLastRightState[mod->name])
+						mod->renderSettings = !mod->renderSettings;
+
 					modulesLastState[mod->name] = buttonStates[0];
+					modulesLastRightState[mod->name] = buttonStates[1];
+
+					if (!mod->renderSettings) continue;
 
 					for (auto setting : mod->moduleSettings) {
 						auto txt2 = TextHolder(setting->name + ": " + setting->enums[setting->currentIndex]);
