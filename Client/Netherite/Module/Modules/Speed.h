@@ -82,13 +82,13 @@ public:
         if (clientInst->getLocalPlayer() == nullptr) return;
         auto player = clientInst->getLocalPlayer();
 
-		auto
-		w = keymap['W'], 
-		a = keymap['A'],
-		s = keymap['S'],
-		d = keymap['D'];
+        auto
+            w = keymap['W'],
+            a = keymap['A'],
+            s = keymap['S'],
+            d = keymap['D'];
 
-		bool pressed = clientInst->mcGame->canUseMoveKeys() && (w || a || s || d);
+        bool pressed = clientInst->mcGame->canUseMoveKeys() && (w || a || s || d);
         auto calcYaw = player->getRotations()->y;
 
         if (w)
@@ -123,7 +123,7 @@ public:
             auto speed = 0.4f;
 
             if (moduleSettings[0]->currentIndex == 2)
-                speed = 0.3f;
+                speed = 0.25f;
             else speed = 0.4f;
 
             player->getVelocity()->x = cos(calcYawF) * speed;
@@ -138,10 +138,11 @@ public:
             player->getVelocity()->x = cos(calcYawF) * speed;
             player->getVelocity()->z = sin(calcYawF) * speed;
         }
-	};
+    };
 
     void onDisable() override {
         if (clientInst->getLocalPlayer() == nullptr) return;
+
         auto player = clientInst->getLocalPlayer();
         player->getVelocity()->x *= 0;
         player->getVelocity()->z *= 0;

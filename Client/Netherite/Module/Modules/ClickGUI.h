@@ -81,6 +81,18 @@ public:
 
 					if (!mod->renderSettings) continue;
 
+					auto txt3 = TextHolder("Keybind: 7");
+
+					auto newPos2 = category.second;
+					newPos2.y += (GameInput::UI_TEXTMEASURE_HEIGHT_ARRAYLIST / 1.6) * index;
+
+					auto optionStates = renderer->DrawButtonText(newPos2, Vector2(64, (GameInput::UI_TEXTMEASURE_HEIGHT_ARRAYLIST / 1.6)),
+						UIColor(255, 255, 255, 255), UIColor(0, 0, 0, 178), UIColor(0, 0, 0, 178),
+						clientInst->getGuiData()->scaledMousePos(), controllerInst->leftClickDown, controllerInst->rightClickDown,
+						txt3, GameInput::UI_TEXT_DEFAULT, false);
+
+					index++;
+
 					for (auto setting : mod->moduleSettings) {
 						auto txt2 = TextHolder(setting->name + ": " + setting->enums[setting->currentIndex]);
 
