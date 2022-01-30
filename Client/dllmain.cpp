@@ -193,8 +193,10 @@ void RenderContextCallback(void* a1, MinecraftUIRenderContext* ctx) {
             if (mod->enabled && mod->name != "ClickGUI")
                 mod->onThirdFrameRender(renderer);
         for (auto mod : moduleManager.modules)
-            if (mod->enabled && mod->name == "ClickGUI")
+            if (mod->enabled && mod->name == "ClickGUI") {
                 mod->onThirdFrameRender(renderer);
+                *clientInst->getLocalPlayer()->getSwingState() = 0;
+            }
     }
 
     for (auto mod : moduleManager.modules)

@@ -398,6 +398,7 @@ public:
 	static const char* SIG_CriticalHandler; // Last Updated: v1.18.2
 	static const char* SIG_NoSlowDown; // Last Updated: v1.18.2
 	static const char* SIG_NoSlowDown2; // Last Updated: v1.18.2
+	static const char* SIG_StartDestroyBlock; // Last Updated: v1.18.2
 
 	static const char* SIG_Animation_SmoothSwing; // Last Updated: v1.18.2
 	static const char* SIG_Animation_QFlick; // Last Updated: v1.18.2
@@ -460,7 +461,7 @@ const char* GameSigs::SIG_KnockBack = "89 81 ? ? ? ? 8B 42 ? 89 81 ? ? ? ? 8B 42
 const char* GameSigs::SIG_ShadowRenderer = "48 8B C4 48 89 58 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? ? ? 70 B8 ? ? 78 A8 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 4C 8B F9 48 8D BA"; // mf
 const char* GameSigs::SIG_SetPosition = "40 ? 48 ? EC 20 ? 02 ? 8B D9 ? ? D8";
 const char* GameSigs::SIG_CriticalHandler = "73 5A 80 B9 D8 01 ? ? ? 75 51";
-
+const char* GameSigs::SIG_StartDestroyBlock = "40 53 57 41 56 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 84 24 ? ? ? ? 4D 8B F1";
 // short
 const char* GameSigs::SIG_Animation_SmoothSwing = "E8 ? ? ? ? F3 0F 10 0D ? ? ? ? 41 0F 28 C0";
 const char* GameSigs::SIG_Animation_OldCombat = "F3 ? ? C1 ? ? C8 48 8D 15";
