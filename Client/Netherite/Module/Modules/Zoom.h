@@ -7,7 +7,7 @@ public:
 	void onTick() override {
 		if (clientInst->getLocalPlayer() == nullptr) return;
 
-		*clientInst->getLocalPlayer()->getFieldOfView() = 2.f;
+		*clientInst->getLocalPlayer()->getFieldOfView() = 0.25f;
 	};
 
 	void onDisable() override {
