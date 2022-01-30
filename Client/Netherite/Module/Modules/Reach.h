@@ -8,7 +8,7 @@ public:
 		if (targetAddress == nullptr) {
 			targetAddress = (void*)MCM::findSig(GameSigs::SIG_Reach);
 		}
-	};
+	}
 	void* targetAddress;
 
 	void onCITick(ClientInstance* a1) override {

@@ -18,7 +18,7 @@ public:
             "Vanilla",
             "Hive",
             "NG" });
-    };
+    }
 
     float speed = 0.6f;
     float height = 0.4;
@@ -76,7 +76,7 @@ public:
                 groundTimer = 0;
             break;
         }
-    };
+    }
 
     void onGameTick(GameMode* gm) override {
         if (clientInst->getLocalPlayer() == nullptr) return;
@@ -138,7 +138,7 @@ public:
             player->getVelocity()->x = cos(calcYawF) * speed;
             player->getVelocity()->z = sin(calcYawF) * speed;
         }
-    };
+    }
 
     void onDisable() override {
         if (clientInst->getLocalPlayer() == nullptr) return;

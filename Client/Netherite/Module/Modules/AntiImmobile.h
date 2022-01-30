@@ -8,15 +8,15 @@ public:
 		uintptr_t address = MCM::findSig(GameSigs::SIG_AntiImmobile);
 		ptr = reinterpret_cast<void*>(address);
 		MH_CreateHook(this->ptr, isImmobile, &this->funcPtr);
-	};
+	}
 
 	void onEnable() override {
 		MH_EnableHook(ptr);
-	};
+	}
 
 	void onDisable() override {
 		MH_DisableHook(ptr);
-	};
+	}
 
 	static bool isImmobile(Actor* ent) { return false; }
 };

@@ -2,7 +2,7 @@
 
 class Hitbox : public Module {
 public:
-    Hitbox() : Module("Hitbox", "Player", "Increase entityhitboxes", GameInput::KEY_NONE) {};
+    Hitbox() : Module("Hitbox", "Player", "Increase entityhitboxes", GameInput::KEY_NONE) {}
 
     void onGameTick(GameMode* gm) override {
         for (auto ent : clientInst->getEntityList()) {
@@ -10,5 +10,5 @@ public:
             entity->getHitbox()->x = 7;
             entity->getHitbox()->y = 7;
         }
-    };
+    }
 };
