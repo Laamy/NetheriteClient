@@ -46,6 +46,9 @@ void CreateNotification(const char* text, float timer = 5)
     notifications.push_back(Notification(text, timer));
 }
 
+bool c = false;
+uint64_t c_value;
+
 // import math
 // AABB.h
 #include "Netherite/Math/CaretMeasureData.h"
@@ -55,6 +58,15 @@ void CreateNotification(const char* text, float timer = 5)
 #include "Netherite/Math/Vector3i.h"
 #include "Netherite/Math/Vector4.h"
 #include "Netherite/Math/DeviceIDGenerator.h"
+
+
+#include <algorithm>
+#include <glm/ext/matrix_clip_space.hpp>
+#include <glm/ext/matrix_relational.hpp>
+#include <glm/ext/matrix_transform.hpp>
+#include <glm/gtc/constants.hpp>
+#include <glm/mat4x4.hpp>
+#include <glm/trigonometric.hpp>
 
 #include "Netherite/Math/AABB.h" // requires Vector3
 
@@ -128,6 +140,7 @@ typedef void(__thiscall* SplashTickHook)(uintptr_t, const char*);
 typedef void(__thiscall* ActorTickHook)(Actor*, void*);
 typedef void(__thiscall* _GameModeHook)(GameMode*);
 typedef void(__thiscall* SendChatHook)(void*, TextHolder);
+typedef void(__thiscall* BobViewHook)(uintptr_t, glm::mat4x4&, uintptr_t);
 
 ClientInstanceHook _CIHook;
 RenderContextHook _RCHook;
@@ -137,10 +150,30 @@ SplashTickHook _SplashCharacter;
 ActorTickHook _TickActor;
 _GameModeHook _GameMode;
 SendChatHook _SendChat;
+BobViewHook _BobViewTick;
 
 #pragma endregion
 
 #pragma region MainHooks
+
+void BobViewCallback(uintptr_t a1, glm::mat4x4 &matrix, uintptr_t a3) {
+
+    glm::mat4 View = matrix;
+    matrix = View;
+
+    //matrix = glm::rotate<float>(matrix, 2, glm::vec3(0, 1, 0.5));
+    //matrix = glm::translate<float>(matrix, glm::vec3(0, -2, 3));
+    //matrix = glm::scale<float>(matrix, glm::vec3(2, 2, 2));
+
+    for (auto mod : moduleManager.modules)
+        if (mod->enabled && mod->name == "FakeBlocking")
+            if (controllerInst->rightClickDown) {
+                matrix = glm::rotate<float>(matrix, 2, glm::vec3(-0.5f, 0.5f, 0.5f));
+                matrix = glm::translate<float>(matrix, glm::vec3(0, 0, 0.3f));
+            }
+
+    _BobViewTick(a1, matrix, a3);
+}
 
 float GameModeCallback(GameMode* gm) {
     _gm = gm;
@@ -150,7 +183,7 @@ float GameModeCallback(GameMode* gm) {
         if (mod->enabled && clientInst->getLocalPlayer() != nullptr)
             mod->onGameTick(gm);
 
-    for (auto mod : moduleManager.modules) 
+    for (auto mod : moduleManager.modules)
         if (mod->enabled && mod->name == "BlockReach")
             return 256;
     return 6;
@@ -292,6 +325,11 @@ void Init(LPVOID c) { // when the dllmain is bri ish
         uintptr_t clientinstance_Addr = MCM::findSig(GameSigs::SIG_ClientInstance);
         if (MH_CreateHook((void*)clientinstance_Addr, &ClientInstanceCallback, reinterpret_cast<LPVOID*>(&_CIHook)) == MH_OK) {
             MH_EnableHook((void*)clientinstance_Addr);
+        };
+
+        uintptr_t bobview_Addr = MCM::findSig(GameSigs::SIG_BobView);
+        if (MH_CreateHook((void*)bobview_Addr, &BobViewCallback, reinterpret_cast<LPVOID*>(&_BobViewTick)) == MH_OK) {
+            MH_EnableHook((void*)bobview_Addr);
         };
 
         uintptr_t gamdeMode_Addr = MCM::findSig(GameSigs::SIG_GameModeHook);

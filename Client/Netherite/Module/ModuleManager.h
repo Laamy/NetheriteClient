@@ -73,7 +73,9 @@ public:
 
 		// Misc
 		modules.push_back(new TestModule());
-		modules.push_back(new Module("BlockReach", "Misc", "Lets you place blocks father away retard"));
+		modules.push_back(new Module("BlockReach", "Misc", "Lets you place blocks farther away retard"));
+		modules.push_back(new Module("AntiBot", "Misc", "antibot u retard its literally what its named"));
+		modules.push_back(new Module("FakeBlocking", "Misc", "Fake java 1.7 blocking"));
 		modules.push_back(new Derp());
 
 		updateCategoriesArray(); // fix up categories array
