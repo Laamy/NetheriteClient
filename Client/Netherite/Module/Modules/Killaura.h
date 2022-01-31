@@ -45,7 +45,7 @@ public:
             }
         }
         tick2++;
-    };
+    }
 
     void onGameTick(GameMode* gm) override {
         if (clientInst->getLocalPlayer() == nullptr) return;

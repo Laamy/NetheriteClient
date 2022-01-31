@@ -8,7 +8,7 @@ public:
 		"Airwalk",
 		"Hive",
 		"NG" }, 0);
-	};
+	}
 
 	float effectiveValue = 0;
 	float speed = 1.f;
@@ -121,7 +121,7 @@ public:
 			}
 			break;
 		}
-	};
+	}
 
 	void onDisable() override {
 		if (clientInst->getLocalPlayer() == nullptr) return;

@@ -9,7 +9,7 @@ public:
 		ptr = reinterpret_cast<void*>(address);
 		MH_CreateHook(this->ptr, startDestroyBlock, &this->funcPtr);
 		renderInArraylist = false;
-	};
+	}
 
 	static bool startDestroyBlock(GameMode* _this, class BlockPos* a2, unsigned __int8 side, bool* isDestroyedOut) { return false; }
 
@@ -128,10 +128,10 @@ public:
 
 			renderer->setShadow(false);
 		}
-	};
+	}
 	void onEnable() override {
 		MH_EnableHook(ptr);
-	};
+	}
 	void onDisable() override {
 		MH_DisableHook(ptr);
 		clientInst->releaseMouse();

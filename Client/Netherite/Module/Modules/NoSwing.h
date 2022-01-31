@@ -7,7 +7,7 @@ public:
             "Server",
             "Client"
         });
-    };
+    }
 
     void onGameTick(GameMode* gm) override {
         if (clientInst->getLocalPlayer() == nullptr || !clientInst->mcGame->canUseMoveKeys()) return;
@@ -21,5 +21,5 @@ public:
             *clientInst->getLocalPlayer()->getSwingState() = 0;
             break;
         }
-    };
+    }
 };

@@ -2,8 +2,7 @@
 
 class Sprint : public Module {
 public:
-	Sprint() : Module("Sprint", "Movement", "Automatically sprint", GameInput::KEY_NONE, true) {
-	};
+	Sprint() : Module("Sprint", "Movement", "Automatically sprint", GameInput::KEY_NONE, true) {}
 
 	void onCITick(ClientInstance* ci) override {
 		if (ci->getLocalPlayer() == nullptr) return;
@@ -17,5 +16,5 @@ public:
 		if (pressed) {
 			ci->getLocalPlayer()->setSprinting(true);
 		}
-	};
+	}
 };

@@ -7,7 +7,7 @@ public:
 			"Bar", "Split", "Outline", "None"
 		});
 		renderInArraylist = false; // lmao
-	};
+	}
 
 	static const struct ArraylistSortingArgs {
 		bool operator()(Module* mod1, Module* mod2)
@@ -97,5 +97,5 @@ public:
 			index++;
 		}
 		renderer->setShadow(false);
-	};
+	}
 };

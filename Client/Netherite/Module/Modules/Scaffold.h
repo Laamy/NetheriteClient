@@ -10,14 +10,14 @@ public:
 			"Silent", // normal mode but only server sided
 			"None"
 		});
-	};
+	}
 	
-	bool packetspenisIsHard = false;
+	bool nrgspenisIsHard = false;
 
 	void onTick() {
 		if (clientInst->getLocalPlayer() == nullptr) return;
 		auto player = clientInst->getLocalPlayer();
-	};
+	}
 
 	void onGameTick(GameMode* gm) override {
 		if (clientInst->getLocalPlayer() == nullptr) return;
@@ -31,6 +31,5 @@ public:
 
 		_gm->buildBlock(blockBelow, 4);
 		_gm->stopBuildBlock();
-	};
-
+	}
 };

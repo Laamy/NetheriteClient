@@ -22,7 +22,7 @@ public:
         *player->getVelocity() = Vector3(0, 0, 0);
         player->animateHurt();
         currSpeed = 0.50f;
-    };
+    }
 
     void onGameTick(GameMode* gm) override {
         auto player = clientInst->getLocalPlayer();
@@ -101,10 +101,10 @@ public:
     }
 
     void onTick() override {
-    };
+    }
 
     void onDisable() override {
         if (clientInst->getLocalPlayer() == nullptr) return;
         tick = 0;
-    };
+    }
 };

@@ -3,21 +3,19 @@
 class Watermark : public Module 
 {
 public:
-	Watermark() : Module("Watermark", "Visual", "Displays watermark", GameInput::KEY_NONE, true) 
-	{
+	Watermark() : Module("Watermark", "Visual", "Displays watermark", GameInput::KEY_NONE, true) {
 		addSetting("Mode", std::vector<std::string> {
 			"CS:GO", "Text"
 		});
 		renderInArraylist = false;
-	};
+	}
 
 	std::string name = "N";
 	std::string name2 = "etherite - v1.3";
 
 	TextHolder aids = TextHolder(TextInput::Merge("%s%s%s%s%s", TextInput::Bold, name, TextInput::Reset, TextInput::White, name2, name2.c_str()));
 
-	void onThirdFrameRender(DrawUtils* renderer) override 
-	{
+	void onThirdFrameRender(DrawUtils* renderer) override {
 		int index = 0;
 
 		auto textStr = TextHolder(aids);
@@ -40,5 +38,5 @@ public:
 		
 		}
 		index++;
-	};
+	}
 };

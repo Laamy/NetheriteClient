@@ -7,7 +7,7 @@ public:
         addSetting("Mode", std::vector<std::string> {
             "Custom" /*custom is for XYZ pos of hand*/, "1.7"
         });
-    };
+    }
     void* targetAddress;
 
 	void onEnable() override {
