@@ -75,6 +75,8 @@ uint64_t c_value;
 #include "Memory/Hooks/GameHook.h"
 
 // import sdk
+#include "Memory/SDK/GLMatrix.h"
+#include "Memory/SDK/LevelRenderer.h"
 #include "Memory/SDK/Block.h"
 #include "Memory/SDK/GameMode.h"
 #include "Memory/SDK/CompoundTag.h"

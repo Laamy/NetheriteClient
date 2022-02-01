@@ -27,6 +27,7 @@
 #include "Netherite/Module/Modules/Step.h"
 #include "Netherite/Module/Modules/Derp.h"
 #include "Netherite/Module/Modules/Zoom.h"
+#include "Netherite/Module/Modules/ESP.h"
 
 class ModuleManager
 {
@@ -50,6 +51,7 @@ public:
 		modules.push_back(new NoHurtCam());
 		modules.push_back(new ClickGUI());
 		modules.push_back(new Zoom());
+		modules.push_back(new ESP());
 
 		// Movement
 		modules.push_back(new Velocity());

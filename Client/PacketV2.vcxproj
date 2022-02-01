@@ -162,8 +162,10 @@
     <ClInclude Include="Memory\SDK\CompoundTag.h" />
     <ClInclude Include="Memory\SDK\Dimension.h" />
     <ClInclude Include="Memory\SDK\GameMode.h" />
+    <ClInclude Include="Memory\SDK\GLMatrix.h" />
     <ClInclude Include="Memory\SDK\HIDController.h" />
     <ClInclude Include="Memory\SDK\Level.h" />
+    <ClInclude Include="Memory\SDK\LevelRenderer.h" />
     <ClInclude Include="Memory\SDK\Packet.h" />
     <ClInclude Include="Memory\SDK\Packets\TextPacket.h" />
     <ClInclude Include="Memory\SDK\Weather.h" />
@@ -195,6 +197,7 @@
     <ClInclude Include="Netherite\Module\ModuleOption.h" />
     <ClInclude Include="Netherite\Module\ModuleSettings\ModuleSetting.h" />
     <ClInclude Include="Netherite\Module\ModuleSettings\ModuleSlider.h" />
+    <ClInclude Include="Netherite\Module\Modules\ESP.h" />
     <ClInclude Include="Netherite\Module\Modules\Killaura.h" />
     <ClInclude Include="Netherite\Module\Modules\Animations.h" />
     <ClInclude Include="Netherite\Module\Modules\AntiImmobile.h" />

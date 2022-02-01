@@ -38,7 +38,7 @@ public:
 
             if (dis <= maxRange && dis > minRange && controllerInst->leftClickDown
                 && entity->getFormattedNameTag().length() > 6
-                && entity->getFormattedNameTag().length() < 32) {
+                && entity->getFormattedNameTag().length() < 48) {
 
                 if (entity->getHitbox()->x != 0.6f) continue; // antiHitbox
                 if (entity->getHitbox()->y != 1.8f) continue;

@@ -103,6 +103,12 @@ public:
 		ctx->fillRectangle(rectangle, color, alpha);
 	};
 
+	void drawRectangle(Vector2 position, Vector2 size, UIColor color, float alpha, float thickness) {
+		auto rectangle = Vector4(position, size);
+
+		ctx->drawRectangle(rectangle, color, alpha, thickness);
+	};
+
 	float getTextWidth(std::string* textStr, float textSize) {
 
 		TextHolder text(*textStr);

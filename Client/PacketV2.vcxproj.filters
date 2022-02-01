@@ -72,6 +72,9 @@
     <ClInclude Include="Netherite\Module\Modules\DIDChanger.h" />
     <ClInclude Include="Memory\SDK\Packets\TextPacket.h" />
     <ClInclude Include="Memory\SDK\Packet.h" />
+    <ClInclude Include="Memory\SDK\LevelRenderer.h" />
+    <ClInclude Include="Memory\SDK\GLMatrix.h" />
+    <ClInclude Include="Netherite\Module\Modules\ESP.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

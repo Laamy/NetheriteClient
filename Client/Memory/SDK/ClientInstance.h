@@ -21,6 +21,89 @@ public:
 		return *reinterpret_cast<GuiData**>((uintptr_t)(this) + offset);
 	};
 
+	auto getLevelRenderer() { //0xD0
+		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("48 8B 81 ? ? ? ? C3 CC CC CC CC CC CC CC CC 48 8B 81 ? ? ? ? 48 8B") + 3);
+		return *reinterpret_cast<LevelRenderer**>((uintptr_t)(this) + offset);
+	};
+
+	auto getFovX() {
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x658); // cant make offset sigs for these
+	};
+
+	auto getFovY() {
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x66C);
+	};
+
+	auto getMatrix() {
+		//static unsigned int a = *reinterpret_cast<int*>(MCM::findSig("48 8B 81 ? ? ? ? 48 85 C0 74 04 F0 FF 40 ? 48 8B 81 ? ? ? ? 48 89 42") + 3);
+		//static unsigned int b = *reinterpret_cast<int*>(MCM::findSig("? ? 83 ? ? ? ? ? ? 44 24 40 ? ? 83 ? ? ? ? ? ? 44 24 50") + 3);
+
+		//return reinterpret_cast<GLMatrix*>((uintptr_t)(this) + a + 0x10 + b); //0x300
+		return reinterpret_cast<GLMatrix*>((uintptr_t)(this) + 0x2D8); //0x300
+
+		//a = "48 8B 81 ? ? ? ? 48 85 C0 74 04 F0 FF 40 ? 48 8B 81 ? ? ? ? 48 89 42" + 3
+		//b = "? ? 83 ? ? ? ? ? ? 44 24 40 ? ? 83 ? ? ? ? ? ? 44 24 50" + 2
+		//CI + a + 0x10 + b
+	};
+
+	auto getMatrixCorrection() {
+		GLMatrix toReturn = GLMatrix();
+
+		GLMatrix* matrix = getMatrix();
+
+		for (int i = 0; i < 4; i++) {
+			toReturn.matrix[i * 4 + 0] = matrix->matrix[0 + i];
+			toReturn.matrix[i * 4 + 1] = matrix->matrix[4 + i];
+			toReturn.matrix[i * 4 + 2] = matrix->matrix[8 + i];
+			toReturn.matrix[i * 4 + 3] = matrix->matrix[12 + i];
+		}
+
+		return &toReturn;
+	};
+
+	auto getFov() {
+		return Vector2(*getFovX(), *getFovY());
+	};
+
+	__forceinline float transformx(const Vector3& p) {
+		auto matrix = getMatrixCorrection()->matrix;
+		return p.x * matrix[0] + p.y * matrix[4] + p.z * matrix[8] + matrix[12];
+	}
+
+	__forceinline float transformy(const Vector3& p) {
+		auto matrix = getMatrixCorrection()->matrix;
+		return p.x * matrix[1] + p.y * matrix[5] + p.z * matrix[9] + matrix[13];
+	}
+
+	__forceinline float transformz(const Vector3& p) {
+		auto matrix = getMatrixCorrection()->matrix;
+		return p.x * matrix[2] + p.y * matrix[6] + p.z * matrix[10] + matrix[14];
+	}
+
+	inline bool WorldToScreen(Vector3 pos, Vector2& screen) { // pos = pos 2 w2s, screen = output screen coords
+		auto displaySize = getGuiData()->scaledResolution;
+		auto origin = getLevelRenderer()->getOrigin();
+		auto fov = getFov();
+
+		pos.x -= origin.x;
+		pos.y -= origin.y;
+		pos.z -= origin.z;
+
+		float x = transformx(pos);
+		float y = transformy(pos);
+		float z = transformz(pos);
+
+		if (z > 0) return false;
+
+		float mX = (float)displaySize.x / 2.0F;
+		float mY = (float)displaySize.y / 2.0F;
+
+		screen.x = mX + (mX * x / -z * fov.x);
+		screen.y = mY - (mY * y / -z * fov.y);
+
+		return true;
+	}
+
 	auto getEntityList() {
 		std::map<uintptr_t, Actor*> _entitylist = std::map<uintptr_t, Actor*>();
 

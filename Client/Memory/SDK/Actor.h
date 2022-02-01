@@ -598,6 +598,11 @@ public:
 		return reinterpret_cast<float*>((uintptr_t)(this) + offset);
 	};
 
+	auto getRawUsername() {
+		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("F3 ? ? 88 ? ? ? ? C3 CC CC CC 48 8B 41 10 F3 ? ? 80 ? ? ? ? C3 CC CC CC 48 8B 41 ? F3 ? ? 88 ? ? ? ? C3 CC CC CC 48 83") + 4);
+		return reinterpret_cast<TextHolder*>((uintptr_t)(this) + offset + 0xC);
+	};
+
 	auto getStepInformation() {
 		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("F3 ? ? 80 ? ? ? ? C3 CC CC CC 48 8B 41 10 88 90 ? ? ? ? C3 CC CC CC CC CC 48 8B 41 10 ? ? 80 ? ? ? ? C3 CC CC CC CC 48 8B 41 10") + 4);
 		return reinterpret_cast<Vector2*>((uintptr_t)(this) + offset);
