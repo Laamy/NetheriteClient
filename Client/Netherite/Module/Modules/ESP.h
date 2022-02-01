@@ -16,6 +16,8 @@ public:
 				//auto username = std::string(entity->getRawUsername()->getText());
 
 				if (entity->getPosition()->upper.distance(clientInst->getLocalPlayer()->getPosition()->upper) >= 64) continue;
+				if (entity->getHitbox()->x < 0.6f || entity->getHitbox()->y < 1.8f) continue;
+				if (entity->getHitbox()->x > 8 || entity->getHitbox()->y > 8) continue;
 
 				Vector2 output = Vector2();
 				Vector2 output2 = Vector2();
@@ -32,6 +34,9 @@ public:
 					if (output.y > output2.y)
 						endPos.y = output.y - output2.y;
 					else endPos.y = output2.y - output.y;
+
+					if (output.x > output2.x)
+						output.x -= endPos.x;
 					//endPos.y = output.y - output2.y;
 
 					renderer->drawRectangle(output, endPos, color, 1, 2);
