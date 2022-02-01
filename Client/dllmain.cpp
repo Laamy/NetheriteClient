@@ -161,7 +161,7 @@ void BobViewCallback(uintptr_t a1, glm::mat4x4 &matrix, uintptr_t a3) {
     glm::mat4 View = matrix;
     matrix = View;
 
-    for (auto mod : moduleManager.modules)
+    for (auto mod : moduleManager.modules) {
         if (mod->enabled && mod->name == "FakeBlocking")
         {
             if (controllerInst->rightClickDown) {
@@ -169,13 +169,19 @@ void BobViewCallback(uintptr_t a1, glm::mat4x4 &matrix, uintptr_t a3) {
                 matrix = glm::translate<float>(matrix, glm::vec3(0, 0, 0.3f));
             }
         }
-        else if (mod->enabled && mod->name == "Animations" && mod->moduleSettings[1]->currentIndex == 1)
+        if (mod->enabled && mod->name == "Killaura") // autoblock
         {
-            matrix = glm::rotate<float>(matrix, 2, glm::vec3(0, 1, 0.5));
-            matrix = glm::translate<float>(matrix, glm::vec3(0, -2, 3));
-            matrix = glm::scale<float>(matrix, glm::vec3(2, 2, 2));
+            if (controllerInst->rightClickDown && mod->moduleSettings[2]->currentIndex == 1) {
+                matrix = glm::rotate<float>(matrix, 2, glm::vec3(-0.5f, 0.5f, 0.5f));
+                matrix = glm::translate<float>(matrix, glm::vec3(0, 0, 0.3f));
+            }
         }
-
+        if (mod->enabled && mod->name == "Animations" && mod->moduleSettings[1]->currentIndex == 1)
+        {
+            matrix = glm::rotate<float>(matrix, 2, glm::vec3(-0.6f, 0.6f, 0.6f));
+            matrix = glm::translate<float>(matrix, glm::vec3(0, 0.3f, 0.6f));
+        }
+    }
 
     _BobViewTick(a1, matrix, a3);
 }

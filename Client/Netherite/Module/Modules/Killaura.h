@@ -10,6 +10,9 @@ public:
         addSetting("Bypass", {
             "None", "Flareon"
             });
+        addSetting("HandMode", {
+            "None", "AutoBlock"
+            });
     }
 
     int tick = 0;
