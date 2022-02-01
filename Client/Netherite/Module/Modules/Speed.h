@@ -41,7 +41,7 @@ public:
 
         //if (pressed && )
 
-        if (pressed && *player->onGround() && moduleSettings[0]->currentIndex != 4 | 1)
+        if (pressed && *player->onGround() && moduleSettings[0]->currentIndex != 4 && moduleSettings[0]->currentIndex != 1)
             player->jumpFromGround();
         else if (pressed && *player->onGround() && moduleSettings[0]->currentIndex != 1)
         {
@@ -66,14 +66,9 @@ public:
                 groundTimer++;
             break;
         case 1:
-            if (*player->onGround() && groundTimer >= 5) {
-                groundTimer = 0;
-                player->jumpFromGround();
+            if (*player->onGround()) {
+                player->getVelocity()->y = 0.43f;
             }
-            if (*player->onGround())
-                groundTimer++;
-            if (!*player->onGround())
-                groundTimer = 0;
             break;
         }
     }
@@ -131,14 +126,32 @@ public:
 
         }
         else if (pressed && moduleSettings[0]->currentIndex == 1) {
-            player->getVelocity()->x = cos(calcYawF) * currSpeed;
-            player->getVelocity()->z = sin(calcYawF) * currSpeed;
+            if (player->getVelocity()->y >= 0.05f && check == 0) {
+                check = 1;
+
+                player->getVelocity()->x = cos(calcYawF) * 0.50f;
+                player->getVelocity()->z = sin(calcYawF) * 0.50f;
+            }
+
+            if (player->getVelocity()->y < -0.05f && check == 1) {
+                check = 0;
+
+                player->getVelocity()->x = cos(calcYawF) * 0.50f;
+                player->getVelocity()->z = sin(calcYawF) * 0.50f;
+            }
+
+            if (*player->onGround()) {
+                player->getVelocity()->x = cos(calcYawF) * 0.50f;
+                player->getVelocity()->z = sin(calcYawF) * 0.50f;
+            }
         }
         else if (pressed) {
             player->getVelocity()->x = cos(calcYawF) * speed;
             player->getVelocity()->z = sin(calcYawF) * speed;
         }
     }
+
+    int check = 0;
 
     void onDisable() override {
         if (clientInst->getLocalPlayer() == nullptr) return;

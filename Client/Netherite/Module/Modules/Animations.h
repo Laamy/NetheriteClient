@@ -5,12 +5,18 @@ class Animations : public Module {
 public:
     Animations() : Module("Animations", "Visual", "Changes the swing/hitting animation", GameInput::KEY_NONE) {
         addSetting("Mode", std::vector<std::string> {
-            "Custom" /*custom is for XYZ pos of hand*/, "1.7"
+            "Custom" /*custom is for XYZ pos of hand*/, "1.7", "None"
+        });
+        addSetting("Type", std::vector<std::string> {
+            "None", "Hands"
         });
     }
     void* targetAddress;
 
 	void onEnable() override {
+        //if (moduleSettings[1]->currentIndex == 1) return;
+        if (moduleSettings[0]->currentIndex == 3) return;
+
         if (targetAddress == nullptr)
             targetAddress = (void*)MCM::findSig(GameSigs::SIG_Animation_SmoothSwing);
         BYTE* patch = (BYTE*)"\x90\x90\x90\x90\x90";

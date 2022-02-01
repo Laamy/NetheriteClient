@@ -2,7 +2,7 @@
 
 class Zoom : public Module {
 public:
-	Zoom() : Module("Zoom", "Visual", "Zoom out", GameInput::KEY_NONE) {};
+	Zoom() : Module("Zoom", "Visual", "Zoom in", GameInput::KEY_NONE) {};
 
 	void onTick() override {
 		if (clientInst->getLocalPlayer() == nullptr) return;
