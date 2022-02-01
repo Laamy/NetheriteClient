@@ -110,17 +110,6 @@ public:
 		for (auto entity : entitylist) {
 			if (entity.second == nullptr) continue;
 
-			if (entity.second->getPosition()->lower.x == 0) continue;
-			if (entity.second->getPosition()->lower.y == 0) continue;
-			if (entity.second->getPosition()->lower.z == 0) continue;
-
-			if (entity.second->getPosition()->upper.x == 0) continue;
-			if (entity.second->getPosition()->upper.y == 0) continue;
-			if (entity.second->getPosition()->upper.z == 0) continue;
-
-			if (entity.second->getHitbox()->x == 0) continue;
-			if (entity.second->getHitbox()->y == 0) continue;
-
 			_entitylist[entity.first] = entity.second;
 		}
 

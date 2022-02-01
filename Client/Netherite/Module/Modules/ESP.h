@@ -8,7 +8,7 @@ public:
 	void onThirdFrameRender(DrawUtils* renderer) override {
 		auto color = renderer->getRainbow(5, 1, 1); // RGB
 
-		if (clientInst->getMcGame()->canUseMoveKeys()) {
+		if (clientInst->mcGame->canUseMoveKeys()) {
 			for (auto ent : clientInst->getEntityList()) {
 				auto entity = ent.second;
 				if (entity == nullptr || entity == clientInst->getLocalPlayer()) continue;
