@@ -11,7 +11,7 @@ public:
 	}
 
 	std::string name = "N";
-	std::string name2 = "etherite - v1.5";
+	std::string name2 = "etherite - v1.7";
 
 	TextHolder aids = TextHolder(TextInput::Merge("%s%s%s%s%s", TextInput::Bold, name, TextInput::Reset, TextInput::White, name2, name2.c_str()));
 

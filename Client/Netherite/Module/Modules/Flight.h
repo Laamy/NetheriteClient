@@ -2,13 +2,81 @@
 
 class Flight : public Module {
 public:
-	Flight() : Module("Flight", "Movement", "Allows you to fly wow!!", GameInput::KEY_NONE) {
+	Flight() : Module("Flight", "Movement", "Allows you to fly wow!!", GameInput::KEY_R) {
 		addSetting("Mode", {
 		"Vanilla",
 		"Airwalk",
 		"Hive",
 		"NG" }, 0);
 	}
+
+	/*
+	
+	void onGameTick(GameMode* gm) override {
+		float speed = 1.5f;
+
+		if (clientInst->getLocalPlayer() == nullptr) return;
+		auto player = clientInst->getLocalPlayer();
+
+		*player->onGround() = false;
+
+		// math
+		auto
+			w = keymap['W'],
+			a = keymap['A'],
+			s = keymap['S'],
+			d = keymap['D'];
+
+		bool pressed = clientInst->mcGame->canUseMoveKeys() && (w || a || s || d);
+		auto calcYaw = player->getRotations()->y;
+
+		if (w)
+		{
+			if (!a && !d)
+				calcYaw += 90.f;
+			else if (a)
+				calcYaw += 45.f;
+			else if (d)
+				calcYaw += 135.f;
+		}
+		else if (s)
+		{
+			if (!a && !d)
+				calcYaw -= 90.f;
+			else if (a)
+				calcYaw -= 45.f;
+			else if (d)
+				calcYaw -= 135.f;
+		}
+		else if (!w && !s)
+		{
+			if (!a && d)
+				calcYaw += 180.f;
+		}
+
+		auto calcYawF = calcYaw * (3.1415927f / 180);
+
+		if (pressed) {
+			player->getVelocity()->x = cos(calcYawF) * speed;
+			player->getVelocity()->y = 0;
+			player->getVelocity()->z = sin(calcYawF) * speed;
+		}
+		else
+		{
+			player->getVelocity()->x = 0;
+			player->getVelocity()->y = 0;
+			player->getVelocity()->z = 0;
+		}
+	};
+
+	void onDisable() override {
+		if (clientInst->getLocalPlayer() == nullptr) return;
+		auto player = clientInst->getLocalPlayer();
+		player->getVelocity()->x *= 0;
+		player->getVelocity()->z *= 0;
+	}
+	
+	*/
 
 	float effectiveValue = 0;
 	float speed = 1.f;

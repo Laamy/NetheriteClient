@@ -46,19 +46,19 @@ public:
 		// Visual
 		modules.push_back(new CustomCursor());
 		modules.push_back(new Animations());
-		modules.push_back(new Watermark());
 		modules.push_back(new ArrayList());
 		modules.push_back(new NoHurtCam());
+		modules.push_back(new Watermark());
 		modules.push_back(new ClickGUI());
 		modules.push_back(new Zoom());
 		modules.push_back(new ESP());
 
 		// Movement
+		modules.push_back(new FastStop());
 		modules.push_back(new Velocity());
 		modules.push_back(new LongJump());
-		modules.push_back(new FastStop());
-		modules.push_back(new Flight());
 		modules.push_back(new Sprint());
+		modules.push_back(new Flight());
 		modules.push_back(new Speed());
 		//modules.push_back(new Step());
 
@@ -74,10 +74,11 @@ public:
 		modules.push_back(new NoLagBack());
 
 		// Misc
+		modules.push_back(new Module("TinyItemModel", "Misc", "Gives u a tiny item model"));
 		modules.push_back(new TestModule());
+		modules.push_back(new Module("FakeBlocking", "Misc", "Fake java 1.7 blocking"));
 		modules.push_back(new Module("BlockReach", "Misc", "Lets you place blocks farther away retard"));
 		modules.push_back(new Module("AntiBot", "Misc", "antibot u retard its literally what its named"));
-		modules.push_back(new Module("FakeBlocking", "Misc", "Fake java 1.7 blocking"));
 		modules.push_back(new Derp());
 
 		updateCategoriesArray(); // fix up categories array

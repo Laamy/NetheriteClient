@@ -171,13 +171,15 @@ void BobViewCallback(uintptr_t a1, glm::mat4x4 &matrix, uintptr_t a3) {
             matrix = glm::rotate<float>(matrix, 2, glm::vec3(-0.5f, 0.5f, 0.5f));
             matrix = glm::translate<float>(matrix, glm::vec3(0, 0, 0.3f));
         }
-        else if (mod->enabled && mod->name == "FakeBlocking")
+        if (mod->enabled && mod->name == "FakeBlocking")
         {
             if (controllerInst->rightClickDown) {
                 matrix = glm::rotate<float>(matrix, 2, glm::vec3(-0.5f, 0.5f, 0.5f));
                 matrix = glm::translate<float>(matrix, glm::vec3(0, 0, 0.3f));
             }
         }
+        if (mod->enabled && mod->name == "TinyItemModel")
+            matrix = glm::translate<float>(matrix, glm::vec3(0.7f, -0.3f, -1.f));
         if (mod->enabled && mod->name == "Animations" && mod->moduleSettings[1]->currentIndex == 1)
         {
             matrix = glm::rotate<float>(matrix, 2, glm::vec3(-0.6f, 0.6f, 0.6f));

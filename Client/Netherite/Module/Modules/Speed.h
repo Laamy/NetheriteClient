@@ -9,15 +9,19 @@ public:
             "Hive",
             "Kow",
             "Debug",
-            "NG" });
+            "NG",
+            "Boost"
+        });
         addSetting("Height", {
             "Vanilla",
             "Hive",
-            "NG" });
+            "NG"
+        });
         addSetting("Speed", {
             "Vanilla",
             "Hive",
-            "NG" });
+            "NG"
+        });
     }
 
     float speed = 0.6f;
@@ -143,6 +147,22 @@ public:
             if (*player->onGround()) {
                 player->getVelocity()->x = cos(calcYawF) * 0.50f;
                 player->getVelocity()->z = sin(calcYawF) * 0.50f;
+            }
+        }
+        else if (pressed && moduleSettings[0]->currentIndex == 5) { // i should use switches
+            if (player->getVelocity()->y >= 0.05f && check == 0)
+                check = 1;
+
+            if (player->getVelocity()->y < -0.05f && check == 1) {
+                check = 0;
+
+                player->getVelocity()->x = cos(calcYawF) * 0.5f;
+                player->getVelocity()->z = sin(calcYawF) * 0.5f;
+            }
+
+            if (*player->onGround()) {
+                player->getVelocity()->x = cos(calcYawF) * 0.5f;
+                player->getVelocity()->z = sin(calcYawF) * 0.5f;
             }
         }
         else if (pressed) {

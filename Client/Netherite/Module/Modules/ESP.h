@@ -15,9 +15,10 @@ public:
 
 				//auto username = std::string(entity->getRawUsername()->getText());
 
-				if (entity->getPosition()->upper.distance(clientInst->getLocalPlayer()->getPosition()->upper) >= 64) continue;
-				if (entity->getHitbox()->x < 0.6f || entity->getHitbox()->y < 1.8f) continue;
-				if (entity->getHitbox()->x > 8 || entity->getHitbox()->y > 8) continue;
+				if (entity->getPosition()->upper.distance(clientInst->getLocalPlayer()->getPosition()->upper) >= 256) continue;
+
+				if (entity->getHitbox()->x != 0.6f) continue; // antiHitbox
+				if (entity->getHitbox()->y != 1.8f) continue;
 
 				Vector2 output = Vector2();
 				Vector2 output2 = Vector2();

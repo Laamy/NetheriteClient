@@ -64,9 +64,7 @@ public:
             if (moduleSettings[1]->currentIndex == 1)
                 maxRange = 5;
 
-            if (dis <= maxRange && dis > minRange && controllerInst->leftClickDown
-                && entity->getFormattedNameTag().length() > 6
-                && entity->getFormattedNameTag().length() < 48) {
+            if (dis <= maxRange && dis > minRange && controllerInst->leftClickDown) {
 
                 auto eyeHeight = entity->getPosition()->lower;
                 eyeHeight.y += 1.6f; // match penis height yes
