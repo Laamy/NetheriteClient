@@ -12,6 +12,7 @@
 #include "Netherite/Module/Modules/Watermark.h"
 #include "Netherite/Module/Modules/NoHurtCam.h"
 #include "Netherite/Module/Modules/ClickGUI.h"
+#include "Netherite/Module/Modules/NoPacket.h"
 #include "Netherite/Module/Modules/Velocity.h"
 #include "Netherite/Module/Modules/Scaffold.h"
 #include "Netherite/Module/Modules/LongJump.h"
@@ -73,6 +74,7 @@ public:
 		modules.push_back(new AntiImmobile());
 		//modules.push_back(new DIDChanger());
 		modules.push_back(new NoLagBack());
+		modules.push_back(new NoPacket());
 
 		// Misc
 		modules.push_back(new Module("TinyItemModel", "Misc", "Gives u a tiny item model"));

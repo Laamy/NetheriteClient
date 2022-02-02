@@ -35,7 +35,7 @@ public:
 	};
 
 	float effectiveValue = 0;
-	float speed = 1.5f;
+	float speed = 0.7f;
 	float value = 0.f;
 
 	void onGameTick(GameMode* gm) override {

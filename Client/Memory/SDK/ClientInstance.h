@@ -33,13 +33,6 @@ public:
 		return *reinterpret_cast<LoopbackSender**>((uintptr_t)(this) + offset);
 	};
 
-	void stopSendingPackets() {
-		getLoopbackSender()->getPacketSenderAddr()->bytes[0] = 0xC3;
-	};
-
-	void startSendingPackets() {
-		getLoopbackSender()->getPacketSenderAddr()->bytes[0] = 0x48;
-	};
 
 	auto getLevelRenderer() { //0xD0
 		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("48 8B 81 ? ? ? ? C3 CC CC CC CC CC CC CC CC 48 8B 81 ? ? ? ? 48 8B") + 3);

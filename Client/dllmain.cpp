@@ -169,29 +169,32 @@ void BobViewCallback(uintptr_t a1, glm::mat4x4 &matrix, uintptr_t a3) {
     glm::mat4 View = matrix;
     matrix = View;
 
-    for (auto mod : moduleManager.modules) {
-        if (mod->enabled && mod->name == "Killaura" && // autoblock
-            mod->moduleSettings[2]->currentIndex == 1
-            && controllerInst->leftClickDown)
-        {
-            matrix = glm::rotate<float>(matrix, 2, glm::vec3(-0.5f, 0.5f, 0.5f));
-            matrix = glm::translate<float>(matrix, glm::vec3(0, 0, 0.3f));
-        }
+    bool fakeBlock = false;
+
+    for (auto mod : moduleManager.modules)
         if (mod->enabled && mod->name == "FakeBlocking")
         {
             if (controllerInst->rightClickDown) {
                 matrix = glm::rotate<float>(matrix, 2, glm::vec3(-0.5f, 0.5f, 0.5f));
                 matrix = glm::translate<float>(matrix, glm::vec3(0, 0, 0.3f));
+                fakeBlock = true;
             }
         }
-        if (mod->enabled && mod->name == "TinyItemModel")
-            matrix = glm::translate<float>(matrix, glm::vec3(0.7f, -0.3f, -1.f));
-        if (mod->enabled && mod->name == "Animations" && mod->moduleSettings[1]->currentIndex == 1)
-        {
-            matrix = glm::rotate<float>(matrix, 2, glm::vec3(-0.6f, 0.6f, 0.6f));
-            matrix = glm::translate<float>(matrix, glm::vec3(0, 0.3f, 0.6f));
+
+    for (auto mod : moduleManager.modules)
+        if (mod->enabled && mod->name == "TinyItemModel") {
+            if (fakeBlock)
+                matrix = glm::translate<float>(matrix, glm::vec3(1.2f, -0.7f, -0.5f));
+            else matrix = glm::translate<float>(matrix, glm::vec3(0.7f, -0.3f, -1.f));
+            /*
+            
+            translate:
+            x, back/for
+            y, left/right
+            z, up/down
+            
+            */
         }
-    }
 
     _BobViewTick(a1, matrix, a3);
 }

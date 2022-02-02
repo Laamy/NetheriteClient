@@ -7,9 +7,6 @@ public:
         addSetting("Mode", std::vector<std::string> {
             "Custom" /*custom is for XYZ pos of hand*/, "1.7", "None"
         });
-        addSetting("Type", std::vector<std::string> {
-            "None", "Hands"
-        });
     }
     void* targetAddress;
 

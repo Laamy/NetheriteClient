@@ -7,12 +7,6 @@ public:
         addSetting("Mode", {
             "Normal", "Silent"
             });
-        addSetting("Bypass", {
-            "None", "Flareon"
-            });
-        addSetting("HandMode", {
-            "None", "AutoBlock"
-            });
     }
 
     int tick = 0;
@@ -76,6 +70,9 @@ public:
 
                 if (entity->getHitbox()->x != 0.6f) continue; // antiHitbox
                 if (entity->getHitbox()->y != 1.8f) continue;
+
+                if (calcAngle.x > 89) continue;
+                if (calcAngle.x < -89) continue;
 
                 //player->setRot(calcAngle);
                 player->bodyYaw()->x = calcAngle.y;
