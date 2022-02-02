@@ -74,7 +74,13 @@ uint64_t c_value;
 #include "Memory/Hooks/VirtualHook.h"
 #include "Memory/Hooks/GameHook.h"
 
+// include packet shit
+#include "Memory/SDK/Packet.h"
+#include "Memory/SDK/Packets/TextPacket.h"
+
 // import sdk
+#include "Memory/SDK/LoopbackSender.h"
+#include "Memory/SDK/TimerCls.h"
 #include "Memory/SDK/GLMatrix.h"
 #include "Memory/SDK/LevelRenderer.h"
 #include "Memory/SDK/Block.h"

@@ -5,7 +5,7 @@ public:
 	ArrayList() : Module("ArrayList", "Visual", "Displays enabled modules (duh)", GameInput::KEY_NONE, true) {
 		addSetting("Mode", std::vector<std::string> {
 			"Bar", "Split", "Outline", "None"
-		});
+		}, 3);
 		renderInArraylist = false; // lmao
 	}
 

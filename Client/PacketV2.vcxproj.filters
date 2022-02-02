@@ -75,6 +75,9 @@
     <ClInclude Include="Memory\SDK\LevelRenderer.h" />
     <ClInclude Include="Memory\SDK\GLMatrix.h" />
     <ClInclude Include="Netherite\Module\Modules\ESP.h" />
+    <ClInclude Include="Memory\SDK\TimerCls.h" />
+    <ClInclude Include="Netherite\Module\Modules\Timer.h" />
+    <ClInclude Include="Memory\SDK\LoopbackSender.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

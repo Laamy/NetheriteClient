@@ -22,6 +22,7 @@
 #include "Netherite/Module/Modules/Sprint.h"
 #include "Netherite/Module/Modules/Hitbox.h"
 #include "Netherite/Module/Modules/NoSlow.h"
+#include "Netherite/Module/Modules/Timer.h"
 #include "Netherite/Module/Modules/Speed.h"
 #include "Netherite/Module/Modules/Reach.h"
 #include "Netherite/Module/Modules/Step.h"
@@ -79,6 +80,7 @@ public:
 		modules.push_back(new Module("FakeBlocking", "Misc", "Fake java 1.7 blocking"));
 		modules.push_back(new Module("BlockReach", "Misc", "Lets you place blocks farther away retard"));
 		modules.push_back(new Module("AntiBot", "Misc", "antibot u retard its literally what its named"));
+		modules.push_back(new Timer());
 		modules.push_back(new Derp());
 
 		updateCategoriesArray(); // fix up categories array

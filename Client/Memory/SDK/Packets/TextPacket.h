@@ -1,9 +1,5 @@
 #pragma once
 
-#include "../SubSDK/TextHolder.h" // temp
-
-class Packet {};
-
 class TextPacket : public Packet {
 private:
     char gap0[0x28];

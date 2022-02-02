@@ -166,8 +166,10 @@
     <ClInclude Include="Memory\SDK\HIDController.h" />
     <ClInclude Include="Memory\SDK\Level.h" />
     <ClInclude Include="Memory\SDK\LevelRenderer.h" />
+    <ClInclude Include="Memory\SDK\LoopbackSender.h" />
     <ClInclude Include="Memory\SDK\Packet.h" />
     <ClInclude Include="Memory\SDK\Packets\TextPacket.h" />
+    <ClInclude Include="Memory\SDK\TimerCls.h" />
     <ClInclude Include="Memory\SDK\Weather.h" />
     <ClInclude Include="Netherite\Command\Command.h" />
     <ClInclude Include="Netherite\Command\CommandManager.h" />
@@ -222,6 +224,7 @@
     <ClInclude Include="Netherite\Module\Modules\Flight.h" />
     <ClInclude Include="Netherite\Module\Modules\Step.h" />
     <ClInclude Include="Netherite\Module\Modules\TestModule.h" />
+    <ClInclude Include="Netherite\Module\Modules\Timer.h" />
     <ClInclude Include="Netherite\Module\Modules\Velocity.h" />
     <ClInclude Include="Netherite\Module\Modules\Watermark.h" />
     <ClInclude Include="Netherite\Module\Modules\Zoom.h" />

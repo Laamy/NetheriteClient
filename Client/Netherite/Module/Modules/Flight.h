@@ -4,16 +4,42 @@ class Flight : public Module {
 public:
 	Flight() : Module("Flight", "Movement", "Allows you to fly wow!!", GameInput::KEY_R) {
 		addSetting("Mode", {
-		"Vanilla",
-		"Airwalk",
-		"Hive",
-		"NG" }, 0);
+			"Vanilla",
+			"Airwalk",
+			"Flareon",
+			"NG",
+			"Gwen"
+			}, 0);
+		addSetting("UpWarp", {
+			"None",
+			"NG"
+			}, 1);
+		addSetting("Timer", {
+			"x1",
+			"x2",
+			"x3",
+			}, 1);
 	}
 
-	/*
-	
+	void onEnable() override {
+		if (clientInst->getLocalPlayer() == nullptr) return;
+		auto player = clientInst->getLocalPlayer();
+
+		if (moduleSettings[1]->currentIndex == 1)
+		{
+			player->getPosition()->lower.y += 0.5f;
+			player->getPosition()->upper.y += 0.5f;
+		}
+
+		*clientInst->getTimerCls()->getTimer() = (moduleSettings[2]->currentIndex + 1) * 20;
+	};
+
+	float effectiveValue = 0;
+	float speed = 1.5f;
+	float value = 0.f;
+
 	void onGameTick(GameMode* gm) override {
-		float speed = 1.5f;
+		if (moduleSettings[0]->currentIndex != 4) return;
 
 		if (clientInst->getLocalPlayer() == nullptr) return;
 		auto player = clientInst->getLocalPlayer();
@@ -58,7 +84,7 @@ public:
 
 		if (pressed) {
 			player->getVelocity()->x = cos(calcYawF) * speed;
-			player->getVelocity()->y = 0;
+			player->getVelocity()->y = 0.05f * speed;
 			player->getVelocity()->z = sin(calcYawF) * speed;
 		}
 		else
@@ -69,20 +95,10 @@ public:
 		}
 	};
 
-	void onDisable() override {
-		if (clientInst->getLocalPlayer() == nullptr) return;
-		auto player = clientInst->getLocalPlayer();
-		player->getVelocity()->x *= 0;
-		player->getVelocity()->z *= 0;
-	}
-	
-	*/
-
-	float effectiveValue = 0;
-	float speed = 1.f;
-	float value = 0.f;
-
 	void onTick() override {
+
+		if (moduleSettings[0]->currentIndex == 4) return;
+
 		if (clientInst->getLocalPlayer() == nullptr) return;
 		auto player = clientInst->getLocalPlayer();
 
@@ -198,7 +214,10 @@ public:
 		case 0: // Vanilla
 			break;
 		}*/
-		player->getVelocity()->x *= 0;
-		player->getVelocity()->z *= 0;
+		player->getVelocity()->x = 0;
+		player->getVelocity()->y = 0;
+		player->getVelocity()->z = 0;
+
+		*clientInst->getTimerCls()->getTimer() = 20;
 	}
 };

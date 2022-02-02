@@ -21,6 +21,26 @@ public:
 		return *reinterpret_cast<GuiData**>((uintptr_t)(this) + offset);
 	};
 
+	auto getTimerCls() { // 0xC0 + 0xD8
+		static unsigned int offset1 = *reinterpret_cast<int*>(MCM::findSig("48 8B 91 ? ? ? ? 48 85 D2 74 17 48 8B CB E8 ? ? ? ? 48 83 3B ? 74 09 48 8B C3 48 83 C4 ? 5B C3 E8 ? ? ? ? CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40") + 3);
+		static unsigned int offset2 = *reinterpret_cast<int*>(MCM::findSig("48 8B 88 ? ? ? ? F3 ? ? 49 08") + 3);
+
+		return *reinterpret_cast<TimerCls**>(*reinterpret_cast<TimerCls**>((uintptr_t)(this) + offset1) + offset2);
+	};
+
+	auto getLoopbackSender() { // 0xE0
+		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("48 8B 81 ? ? ? ? C3 CC CC CC CC CC CC CC CC 48 8B 89 ? ? ? ? 48 8B 01 48 FF A0 ? ? ? ? CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 40 53 48 83 EC ? 48 8B DA 48 8D 91 ? ? ? ? 48 3B D3") + 3);
+		return *reinterpret_cast<LoopbackSender**>((uintptr_t)(this) + offset);
+	};
+
+	void stopSendingPackets() {
+		getLoopbackSender()->getPacketSenderAddr()->bytes[0] = 0xC3;
+	};
+
+	void startSendingPackets() {
+		getLoopbackSender()->getPacketSenderAddr()->bytes[0] = 0x48;
+	};
+
 	auto getLevelRenderer() { //0xD0
 		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("48 8B 81 ? ? ? ? C3 CC CC CC CC CC CC CC CC 48 8B 81 ? ? ? ? 48 8B") + 3);
 		return *reinterpret_cast<LevelRenderer**>((uintptr_t)(this) + offset);
