@@ -65,15 +65,15 @@ public:
 	virtual int getOnDeathExperience(void);
 	virtual int getOwnerEntityType(void);
 	virtual void remove(void);
-	virtual void setPos(Vector3 const&);
+	virtual void DONTUSETHISSETPOS(Vector3 const&);
 	virtual bool isRuntimePredictedMovementEnabled(void);
 	virtual Vector3* getPredictedMovementValues(void);
-	virtual Vector3* getPos(void);
-	virtual Vector3* getPosOld(void);
+	virtual Vector3* DONTUSETHISGETPOS(void);
+	virtual Vector3* DONTUSETHISGETPOSOLD(void);
 	virtual float getPosExtrapolated(float);
 	virtual float getAttachPos(class ActorLocation, float);
 	virtual Vector3* getItemFiringPos(void);
-	virtual void setRot(Vector2 const&);
+	virtual void DONTUSETHISSETROTS(Vector2 const&);
 	virtual void move(Vector3 const&);
 	virtual void move(class IActorMovementProxy&, Vector3 const&);
 	virtual float getInterpolatedRidingPosition(float);
@@ -113,7 +113,7 @@ private:
 	virtual void TryroFunc67();
 public:
 	virtual __int64 getNameTagAsHash(void);
-	virtual std::string getFormattedNameTag(void);
+	virtual std::string DONTUSETHISNAMETAG(void);
 	virtual void filterFormattedNameTag(class UIProfanityContext const&);
 	virtual void setNameTag(std::basic_string<char, std::char_traits<char>, std::allocator<char>> const&);
 	virtual bool getAlwaysShowNameTag(void);

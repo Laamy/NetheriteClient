@@ -5,7 +5,7 @@ class Killaura : public Module {
 public:
     Killaura() : Module("Killaura", "Combat", "what else u fucking twat", GameInput::KEY_NONE) {
         addSetting("Mode", {
-            "Normal", "Silent"
+            "Silent", "Aimbot"
             });
     }
 
@@ -13,33 +13,42 @@ public:
     int tick2 = 0;
 
     void onTick() override {
+        if (clientInst->getLocalPlayer() == nullptr) return;
         if (tick2 == 1) {
             tick2 = 0;
             return;
         }
-        if (clientInst->getLocalPlayer() == nullptr) return;
+
         auto player = clientInst->getLocalPlayer();
+
+        float maxRange = 8;
+        float minRange = 0.8f;
 
         for (auto ent : clientInst->getEntityList()) {
             auto entity = ent.second;
-            auto dis = (*player->getPos()).distance(entity->getPosition()->lower);
 
-            auto maxRange = 8;
-            auto minRange = 0.8f;
+            DWORD oldProtc = MCM::unprotect((uintptr_t)entity, 1920);
+            
+            Actor* plr = clientInst->getLocalPlayer(); // get player
+            AABB* plrPos = plr->getPosition();
+            if (plr == nullptr) return;
 
-            if (moduleSettings[1]->currentIndex == 1)
-                maxRange = 5;
+            AABB* entPos = entity->getPosition();
+            Vector2* entBox = entity->getHitbox();
 
-            if (dis <= maxRange && dis > minRange && controllerInst->leftClickDown
-                && entity->getFormattedNameTag().length() > 6
-                && entity->getFormattedNameTag().length() < 48) {
+            if (entBox->x != 0.6f) continue; // antiHitbox
+            if (entBox->y != 1.8f) continue;
 
-                if (entity->getHitbox()->x != 0.6f) continue; // antiHitbox
-                if (entity->getHitbox()->y != 1.8f) continue;
+            float dis = plrPos->lower.distance(entPos->lower);
+
+            if (dis <= maxRange && dis > minRange) {
+                if (!controllerInst->leftClickDown) return;
 
                 _gm->attack(*entity);
                 player->swing();
             }
+
+            MCM::protect((uintptr_t)entity, 1920, oldProtc);
         }
         tick2++;
     }
@@ -50,15 +59,16 @@ public:
 
         for (auto ent : clientInst->getEntityList()) {
             auto entity = ent.second;
-            auto dis = (*player->getPos()).distance(entity->getPosition()->lower);
+
+            DWORD oldProtc = MCM::unprotect((uintptr_t)entity, 1920);
+
+            auto dis = player->getPosition()->lower.distance(entity->getPosition()->lower);
 
             auto maxRange = 8;
             auto minRange = 0.8f;
 
-            if (moduleSettings[1]->currentIndex == 1)
-                maxRange = 5;
-
-            if (dis <= maxRange && dis > minRange && controllerInst->leftClickDown) {
+            if (dis <= maxRange && dis > minRange) {
+                if (!controllerInst->leftClickDown) return;
 
                 auto eyeHeight = entity->getPosition()->lower;
                 eyeHeight.y += 1.6f; // match penis height yes
@@ -66,9 +76,9 @@ public:
                 eyeHeight.x += 0.3f; // match center
                 eyeHeight.z += 0.3f; // match center
 
-                auto calcAngle = Vector3::CalcAngle(*player->getPos(), eyeHeight);
+                auto calcAngle = Vector3::CalcAngle(player->getPosition()->lower, eyeHeight);
 
-                if (entity->getHitbox()->x != 0.6f) continue; // antiHitbox
+                if (entity->getHitbox()->x != 0.6f) continue;
                 if (entity->getHitbox()->y != 1.8f) continue;
 
                 if (calcAngle.x > 89) continue;
@@ -80,10 +90,12 @@ public:
 
                 player->getRotations()->x = calcAngle.x;
 
-                if (moduleSettings[1]->currentIndex == 1)
-                    player->getRotations()->y = calcAngle.y; // dont use this
+                if (moduleSettings[0]->currentIndex == 1)
+                    player->getRotations()->y = calcAngle.y;
 
             }
+
+            MCM::protect((uintptr_t)entity, 1920, oldProtc);
         }
     }
 };

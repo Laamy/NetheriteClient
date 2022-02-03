@@ -36,6 +36,10 @@ public:
 		moduleSettings.push_back(new ModuleSetting(std::string(name), myEnums, true, index));
 	}
 
+	void addBoolean(const char* name, int index = 0) {
+		moduleSettings.push_back(new ModuleSetting(std::string(name), { "True", "False" }, true, index));
+	}
+
 	void addSlider(const char* name, float minIndex, float maxIndex, int index = 0) {
 		moduleSliders.push_back(new ModuleSlider(std::string(name), { {0, minIndex}, {1, maxIndex} }, true, index));
 	}

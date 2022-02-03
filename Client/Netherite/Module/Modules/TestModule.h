@@ -52,7 +52,7 @@ public:
 			break;
 		case 2:
 
-			auto calcAngle = Vector3::CalcAngle(*player->getPos(), Vector3(0, 0, 0));
+			auto calcAngle = Vector3::CalcAngle(player->getPosition()->lower, Vector3(0, 0, 0));
 			
 			//player->getRotations()->x = calcAngle.x;
 			player->getRotations()->y = calcAngle.y;

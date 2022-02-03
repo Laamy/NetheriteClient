@@ -26,6 +26,16 @@ public:
         VirtualProtect(dst, size, oldprotect, &oldprotect);
     }
 
+    static DWORD unprotect(uintptr_t addr, unsigned int size) {
+        DWORD oldprotect;
+        VirtualProtect((LPVOID)addr, size, PAGE_EXECUTE_READWRITE, &oldprotect);
+        return oldprotect;
+    }
+
+    static void protect(uintptr_t addr, unsigned int size, DWORD oldprotect) {
+        VirtualProtect((LPVOID)addr, size, oldprotect, &oldprotect);
+    }
+
     static void setFloat(void* dst, float src) {
         DWORD oldprotect;
         VirtualProtect(dst, sizeof(float), PAGE_EXECUTE_READWRITE, &oldprotect);
