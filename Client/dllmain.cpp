@@ -96,7 +96,7 @@ uint64_t c_value;
 #include "Memory/SDK/GuiData.h"
 #include "Memory/SDK/MinecraftGame.h"
 
-std::map<uint64_t, Actor*> entitylist = std::map<uint64_t, Actor*>();
+#include "Memory/Netherite.h"
 
 #include "Memory/SDK/ClientInstance.h"
 #include "Memory/SDK/MinecraftUIRenderContext.h"
@@ -119,9 +119,6 @@ DrawUtils* renderer = nullptr;
 // pointers
 std::vector<class Module*>* _modules;
 std::map<std::string, Vector2>* _categories;
-
-// maps
-std::map<uint64_t, bool> keymap = std::map<uint64_t, bool>();
 
 // module stuff
 #include "Netherite/Module/ModuleOption.h"
@@ -214,7 +211,7 @@ float GameModeCallback(GameMode* gm) {
 }
 
 void ActorTickCallback(Actor* ent, void* a2) {
-    entitylist[reinterpret_cast<uintptr_t>(ent)] = ent;
+    Netherite::entitylist[*ent->getRuntimeID()] = ent;
 }
 
 void ClientInstanceCallback(ClientInstance* ci, void* a2) {
@@ -233,7 +230,7 @@ void RenderContextCallback(void* a1, MinecraftUIRenderContext* ctx) {
 
     GameCursors::HandRenderer(renderer);
 
-    auto font = clientInst->mcGame->mcFont;
+    auto font = clientInst->mcGame->getMcFont();
     auto guiDat = clientInst->getGuiData();
 
     renderer->Init(ctx, guiDat, font); // setup render utils
@@ -263,7 +260,7 @@ void RenderContextCallback(void* a1, MinecraftUIRenderContext* ctx) {
 
 void KeymapCallback(uint64_t key, bool held) {
 
-    if (keymap[GameInput::KEY_CTRL] && key == GameInput::KEY_L && held) // only eject if control was pressed before L
+    if (Netherite::keymap[GameInput::KEY_CTRL] && key == GameInput::KEY_L && held) // only eject if control was pressed before L
         DestoryClient();
 
     bool handled = false;
@@ -292,17 +289,9 @@ void KeymapCallback(uint64_t key, bool held) {
             }
         }
 
-    for (auto note : notifications)
-    {
-        if (note.timer == 0) {
-            note.fade -= 1;
-        }
-        //if (note.fade = 60)
-        //    notifications.
-    }
-
     _SendKey(key, held);
-    keymap[key] = held;
+    Netherite::prevKeymap[key] = Netherite::keymap[key];
+    Netherite::keymap[key] = held;
 }
 
 void ControllerTickCallback(HIDController* controller, void* a2, void* a3) {
@@ -351,10 +340,10 @@ void Init(LPVOID c) { // when the dllmain is bri ish
             MH_EnableHook((void*)clientinstance_Addr);
         };
 
-        uintptr_t bobview_Addr = MCM::findSig(GameSigs::SIG_BobView);
-        if (MH_CreateHook((void*)bobview_Addr, &BobViewCallback, reinterpret_cast<LPVOID*>(&_BobViewTick)) == MH_OK) {
-            MH_EnableHook((void*)bobview_Addr);
-        };
+        //uintptr_t bobview_Addr = MCM::findSig(GameSigs::SIG_BobView);
+        //if (MH_CreateHook((void*)bobview_Addr, &BobViewCallback, reinterpret_cast<LPVOID*>(&_BobViewTick)) == MH_OK) {
+            //MH_EnableHook((void*)bobview_Addr);
+        //};
 
         uintptr_t gamdeMode_Addr = MCM::findSig(GameSigs::SIG_GameModeHook);
         if (MH_CreateHook((void*)gamdeMode_Addr, &GameModeCallback, reinterpret_cast<LPVOID*>(&_GameMode)) == MH_OK) {

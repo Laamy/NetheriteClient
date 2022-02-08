@@ -15,10 +15,9 @@ class LevelSoundEvent;
 class ScreenshotOptions;
 
 class Weather {
-public:
+private:
 	virtual void Constructor1();
-	virtual void Constructor2();
-public:
+private:
 	virtual void onSourceCreated(BlockSource&);
 	virtual void onSourceDestroyed(BlockSource&);
 	virtual void onAreaChanged(BlockSource&, Vector3i const&, Vector3i const&);
@@ -53,4 +52,25 @@ public:
 	virtual void stopAllSounds(void);
 	virtual void takePicture(uintptr_t, Actor*, Actor*, ScreenshotOptions&);
 	virtual void playerListChanged(void);
+
+public:// haven't changed in years
+	float* getRainLevel() {
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x34);
+	};
+
+	bool* isRaining() {
+		return reinterpret_cast<bool*>((uintptr_t)(this) + 0x38);
+	};
+
+	bool* isLightning() {
+		return reinterpret_cast<bool*>((uintptr_t)(this) + 0x44);
+	};
+
+	float* getLightningLevel() {
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x48);
+	};
+
+	float* getFogLevel() {
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x4C);
+	};
 }; 

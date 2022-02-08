@@ -14,10 +14,6 @@ public:
 	void onCITick(ClientInstance* a1) override {
 		if (clientInst->getLocalPlayer() == nullptr) return;
 
-		if (targetAddress == nullptr) {
-			targetAddress = (void*)MCM::findSig(GameSigs::SIG_Reach);
-		}
-
 		MCM::setFloat(targetAddress, (float)*moduleSettings[0]->getEnumStack() + 4);
 	}
 

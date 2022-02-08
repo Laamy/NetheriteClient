@@ -6,23 +6,59 @@ public:
     Speed() : Module("Speed", "Movement", "Sped", GameInput::KEY_G) {
         addSetting("Mode", {
             "Vanilla",
-            "Hive",
+            "Flareon",
             "Kow",
             "Debug",
             "NG",
-            "Boost"
+            "Boost",
+            "SArray"
         });
         addSetting("Height", {
             "Vanilla",
-            "Hive",
+            "Flareon",
             "NG"
         });
         addSetting("Speed", {
             "Vanilla",
-            "Hive",
+            "Flareon",
             "NG"
         });
     }
+
+    float sArray[32] = {
+        0.600000f,
+        0.567372f,
+        0.542301f,
+        0.521003f,
+        0.500231f,
+        0.492002f,
+        0.477320f,
+        0.459731f,
+        0.432101f,
+        0.410786f, // 10
+        0.390102f,
+        0.370021f,
+        0.359932f,
+        0.342390f,
+        0.320135f,
+        0.300000f,
+        0.289678f,
+        0.276954f,
+        0.259332f,
+        0.239523f, // 20
+        0.210323f,
+        0.196584f,
+        0.171020f,
+        0.150498f,
+        0.130293f,
+        0.110492f,
+        0.090192f,
+        0.073824f,
+        0.055423f,
+        0.036342f, // 30
+        0.012463f,
+        0.003362f, // 32
+    };
 
     float speed = 0.6f;
     float height = 0.4;
@@ -36,10 +72,10 @@ public:
         auto player = clientInst->getLocalPlayer();
 
         auto
-            w = keymap['W'],
-            a = keymap['A'],
-            s = keymap['S'],
-            d = keymap['D'];
+            w = Netherite::keymap['W'],
+            a = Netherite::keymap['A'],
+            s = Netherite::keymap['S'],
+            d = Netherite::keymap['D'];
 
         bool pressed = clientInst->mcGame->canUseMoveKeys() && (w || a || s || d);
 
@@ -82,10 +118,10 @@ public:
         auto player = clientInst->getLocalPlayer();
 
         auto
-            w = keymap['W'],
-            a = keymap['A'],
-            s = keymap['S'],
-            d = keymap['D'];
+            w = Netherite::keymap['W'],
+            a = Netherite::keymap['A'],
+            s = Netherite::keymap['S'],
+            d = Netherite::keymap['D'];
 
         bool pressed = clientInst->mcGame->canUseMoveKeys() && (w || a || s || d);
         auto calcYaw = player->getRotations()->y;

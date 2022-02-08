@@ -128,7 +128,6 @@ public:
 
 
 	void drawText(Vector2 position, UIColor color, TextHolder text, float measureCalc) {
-
 		auto size = Vector2(1000, 1000); // apply textbox size
 		auto rectangle = Vector4(position, size); // calculate rectangle area
 		auto caretData = CaretMeasureData(); // empty caret data
@@ -183,6 +182,48 @@ public:
 			out_b = q;
 			break;
 		}
+	}
+	UIColor rgbToHSV(UIColor rgb) // HSV
+	{
+		UIColor out = UIColor(0, 0, 0);
+		double min, max, delta;
+
+		min = rgb.r < rgb.g ? rgb.r : rgb.g;
+		min = min < rgb.b ? min : rgb.b;
+
+		max = rgb.r > rgb.g ? rgb.r : rgb.g;
+		max = max > rgb.b ? max : rgb.b;
+
+		out.b = max;
+		delta = max - min;
+		if (delta < 0.00001)
+		{
+			out.g = 0;
+			out.r = 0;
+			return out;
+		}
+		if (max > 0.0) {
+			out.g = (delta / max);
+		}
+		else {
+			out.g = 0.0;
+			out.r = NAN;
+			return out;
+		}
+		if (rgb.r >= max)
+			out.r = (rgb.g - rgb.b) / delta;
+		else
+			if (rgb.g >= max)
+				out.r = 2.0 + (rgb.b - rgb.r) / delta;
+			else
+				out.r = 4.0 + (rgb.r - rgb.g) / delta;
+
+		out.r *= 60.0;
+
+		if (out.r < 0.0)
+			out.r += 360.0;
+
+		return out;
 	}
 
 	// Returns the current millisecond ( from stack overflow )

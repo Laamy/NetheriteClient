@@ -9,10 +9,10 @@ public:
     void onGameTick(GameMode* gm) override {
         auto player = clientInst->getLocalPlayer();
         auto
-            w = keymap['W'],
-            a = keymap['A'],
-            s = keymap['S'],
-            d = keymap['D'];
+            w = Netherite::keymap['W'],
+            a = Netherite::keymap['A'],
+            s = Netherite::keymap['S'],
+            d = Netherite::keymap['D'];
 
         bool pressed = clientInst->mcGame->canUseMoveKeys() && (w || a || s || d);
 

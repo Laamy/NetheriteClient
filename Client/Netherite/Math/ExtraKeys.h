@@ -387,6 +387,7 @@ public:
 	static const char* SIG_ChatSend; // Last Updated: v1.18.2
 	static const char* SIG_GameModeHook; // Last Updated: v1.18.2
 	static const char* SIG_BobView; // Last Updated: v1.18.2
+	static const char* SIG_RenderText; // Last Updated: v1.18.10
 
 	static const char* SIG_AntiImmobile; // Last Updated: v1.18.2
 	static const char* SIG_AnimationsState; // Last Updated: v1.18.2
@@ -454,7 +455,8 @@ const char* GameSigs::SIG_MenuSplash = "44 ? ? 11 48 8D 0D";
 const char* GameSigs::SIG_EntityList_Stablized = "73 ? B0 ? C3 32 C0 C3 CC CC CC CC CC 48 83 EC"; // F3 ? ? 8A ? ? ? ? F3 ? ? A2
 const char* GameSigs::SIG_ChatSend = "48 89 5C 24 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ? ? ? ? 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 4C 8B EA 4C 8B F9 48 8B 49";
 const char* GameSigs::SIG_GameModeHook = "48 83 EC ? 45 84 C0 74 1E";
-const char* GameSigs::SIG_BobView = "48 89 5C ? ? 57 48 81 EC ? ? ? ? 48 8B D9 ? ? B4";
+const char* GameSigs::SIG_BobView = "48 89 5C ? ? 57 48 81 EC ? ? ? ? 48 8B D9 ? ? B4"; // broken
+const char* GameSigs::SIG_RenderText = "48 8B C4 48 89 58 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? ? ? 70 B8 ? ? 78 A8 44 ? ? 40 98 44 ? ? 48 88 44 ? ? 90 ? ? ? ? 44 ? ? 98 ? ? ? ? 44 ? ? A0 ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 45 ? 4C 8B E2 48 89 54";
 
 const char* GameSigs::SIG_AntiImmobile = "48 ? 5C 24 ? ? ? 74 ? ? 57 48 83 EC ? 48 8D ? 24 ? E8 ? ? ? ? 90 ? ? C8 ? ? ? ? ? 48 8B ? ? 8B C8 E8 ? ? ? ? 84";
 const char* GameSigs::SIG_AnimationsState = "48 8B C4 48 89 58 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? 0F 29 70 ? 0F 29 78 ? 44 0F 29 40 ? 44 0F 29 48 ? 44 0F 29 90 ? ? ? ? 44 0F 29 98 ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 4C 8B EA";

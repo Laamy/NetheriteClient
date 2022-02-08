@@ -8,7 +8,8 @@ public:
 			"Airwalk",
 			"Flareon",
 			"NG",
-			"Gwen"
+			"Gwen",
+			"Freeze"
 			}, 0);
 		addSetting("UpWarp", {
 			"None",
@@ -48,10 +49,10 @@ public:
 
 		// math
 		auto
-			w = keymap['W'],
-			a = keymap['A'],
-			s = keymap['S'],
-			d = keymap['D'];
+			w = Netherite::keymap['W'],
+			a = Netherite::keymap['A'],
+			s = Netherite::keymap['S'],
+			d = Netherite::keymap['D'];
 
 		bool pressed = clientInst->mcGame->canUseMoveKeys() && (w || a || s || d);
 		auto calcYaw = player->getRotations()->y;
@@ -82,6 +83,8 @@ public:
 
 		auto calcYawF = calcYaw * (3.1415927f / 180);
 
+		if (moduleSettings[0]->currentIndex == 5) return;
+
 		if (pressed) {
 			player->getVelocity()->x = cos(calcYawF) * speed;
 			player->getVelocity()->y = 0.05f * speed;
@@ -104,10 +107,10 @@ public:
 
 		// math
 		auto
-			w = keymap['W'],
-			a = keymap['A'],
-			s = keymap['S'],
-			d = keymap['D'];
+			w = Netherite::keymap['W'],
+			a = Netherite::keymap['A'],
+			s = Netherite::keymap['S'],
+			d = Netherite::keymap['D'];
 
 		bool pressed = clientInst->mcGame->canUseMoveKeys() && (w || a || s || d);
 		auto calcYaw = player->getRotations()->y;
@@ -203,6 +206,9 @@ public:
 				player->getVelocity()->x *= 2.5f;
 				player->getVelocity()->z *= 2.5f;
 			}
+			break;
+		case 5: // NG
+			player->getVelocity()->y = 0;
 			break;
 		}
 	}

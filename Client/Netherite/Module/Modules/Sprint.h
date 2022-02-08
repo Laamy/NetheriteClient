@@ -7,10 +7,10 @@ public:
 	void onCITick(ClientInstance* ci) override {
 		if (ci->getLocalPlayer() == nullptr) return;
 		auto
-			w = keymap['W'],
-			a = keymap['A'],
-			s = keymap['S'],
-			d = keymap['D'];
+			w = Netherite::keymap['W'],
+			a = Netherite::keymap['A'],
+			s = Netherite::keymap['S'],
+			d = Netherite::keymap['D'];
 
 		bool pressed = clientInst->mcGame->canUseMoveKeys() && (w || a || s || d);
 		if (pressed) {

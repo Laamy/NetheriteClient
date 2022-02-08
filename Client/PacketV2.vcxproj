@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClInclude Include="Memory\Hooks\GameHook.h" />
     <ClInclude Include="Memory\Hooks\VirtualHook.h" />
+    <ClInclude Include="Memory\Netherite.h" />
     <ClInclude Include="Memory\SDK\Block.h" />
     <ClInclude Include="Memory\SDK\BlockSource.h" />
     <ClInclude Include="Memory\SDK\CompoundTag.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Memory\SDK\LoopbackSender.h" />
     <ClInclude Include="Memory\SDK\Packet.h" />
     <ClInclude Include="Memory\SDK\Packets\TextPacket.h" />
+    <ClInclude Include="Memory\SDK\Player.h" />
     <ClInclude Include="Memory\SDK\TimerCls.h" />
     <ClInclude Include="Memory\SDK\Weather.h" />
     <ClInclude Include="Netherite\Command\Command.h" />
@@ -199,6 +201,7 @@
     <ClInclude Include="Netherite\Module\ModuleOption.h" />
     <ClInclude Include="Netherite\Module\ModuleSettings\ModuleSetting.h" />
     <ClInclude Include="Netherite\Module\ModuleSettings\ModuleSlider.h" />
+    <ClInclude Include="Netherite\Module\Modules\Enviroment.h" />
     <ClInclude Include="Netherite\Module\Modules\ESP.h" />
     <ClInclude Include="Netherite\Module\Modules\Killaura.h" />
     <ClInclude Include="Netherite\Module\Modules\Animations.h" />
@@ -210,10 +213,12 @@
     <ClInclude Include="Netherite\Module\Modules\FastStop.h" />
     <ClInclude Include="Netherite\Module\Modules\Hitbox.h" />
     <ClInclude Include="Netherite\Module\Modules\LongJump.h" />
+    <ClInclude Include="Netherite\Module\Modules\Nametags.h" />
     <ClInclude Include="Netherite\Module\Modules\NoHurtCam.h" />
     <ClInclude Include="Netherite\Module\Modules\NoPacket.h" />
     <ClInclude Include="Netherite\Module\Modules\NoSlow.h" />
     <ClInclude Include="Netherite\Module\Modules\NoSwing.h" />
+    <ClInclude Include="Netherite\Module\Modules\ServerXP.h" />
     <ClInclude Include="Netherite\Module\Modules\Speed.h" />
     <ClInclude Include="Netherite\Module\Modules\NoLagBack.h" />
     <ClInclude Include="Netherite\Module\Modules\FastPlace.h" />

@@ -367,4 +367,15 @@ public:
 	virtual void onSourceCreated(BlockSource&);
 	virtual void onSourceDestroyed(BlockSource&);
 	virtual void _localPlayerChangedDimension(void);
+
+public:
+	Vector3* MouseToVec() {
+		//static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("") + 2);
+		return reinterpret_cast<Vector3*>((uintptr_t)(this) + 0xAAC);
+	};
+
+	Vector3i* MouseToBlockPos() {
+		//static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("") + 2);
+		return reinterpret_cast<Vector3i*>((uintptr_t)(this) + 0xAAC - 0x12);
+	};
 };

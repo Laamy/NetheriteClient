@@ -5,6 +5,7 @@
 #include "Netherite/Module/Modules/AutoClicker.h"
 #include "Netherite/Module/Modules/TestModule.h"
 #include "Netherite/Module/Modules/Animations.h"
+#include "Netherite/Module/Modules/Enviroment.h"
 #include "Netherite/Module/Modules/DIDChanger.h"
 #include "Netherite/Module/Modules/NoLagBack.h"
 #include "Netherite/Module/Modules/FastPlace.h"
@@ -14,8 +15,10 @@
 #include "Netherite/Module/Modules/ClickGUI.h"
 #include "Netherite/Module/Modules/NoPacket.h"
 #include "Netherite/Module/Modules/Velocity.h"
+#include "Netherite/Module/Modules/Nametags.h"
 #include "Netherite/Module/Modules/Scaffold.h"
 #include "Netherite/Module/Modules/LongJump.h"
+#include "Netherite/Module/Modules/ServerXP.h"
 #include "Netherite/Module/Modules/Killaura.h"
 #include "Netherite/Module/Modules/FastStop.h"
 #include "Netherite/Module/Modules/NoSwing.h"
@@ -52,6 +55,7 @@ public:
 		modules.push_back(new NoHurtCam());
 		modules.push_back(new Watermark());
 		modules.push_back(new ClickGUI());
+		modules.push_back(new Nametags());
 		modules.push_back(new Zoom());
 		modules.push_back(new ESP());
 
@@ -75,10 +79,12 @@ public:
 		//modules.push_back(new DIDChanger());
 		modules.push_back(new NoLagBack());
 		modules.push_back(new NoPacket());
+		modules.push_back(new ServerXP());
 
 		// Misc
 		modules.push_back(new Module("TinyItemModel", "Misc", "Gives u a tiny item model"));
 		modules.push_back(new TestModule());
+		modules.push_back(new Enviroment());
 		modules.push_back(new Module("FakeBlocking", "Misc", "Fake java 1.7 blocking"));
 		modules.push_back(new Module("BlockReach", "Misc", "Lets you place blocks farther away retard"));
 		modules.push_back(new Module("AntiBot", "Misc", "antibot u retard its literally what its named"));

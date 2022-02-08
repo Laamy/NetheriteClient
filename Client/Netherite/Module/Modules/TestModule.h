@@ -52,10 +52,28 @@ public:
 			break;
 		case 2:
 
-			auto calcAngle = Vector3::CalcAngle(player->getPosition()->lower, Vector3(0, 0, 0));
-			
-			//player->getRotations()->x = calcAngle.x;
-			player->getRotations()->y = calcAngle.y;
+			BlockSource* blockSource = clientInst->getLocalPlayer()->getBlockSourcePtr();
+
+			Actor* lp = clientInst->getLocalPlayer();
+			AABB* plrBoundingBox = lp->getPosition();
+			Vector3 plrPos = plrBoundingBox->lower;
+
+			Vector3i plrIPos = Vector3i(plrPos.x, plrPos.y, plrPos.x);
+
+			Material* uMat = blockSource->getMaterial(plrIPos);
+
+			switch (uMat->type) {
+			case 5:
+				clientInst->Print("Current block material is water");
+				break;
+			case 6:
+				clientInst->Print("Current block material is lava");
+				break;
+			default:
+				clientInst->Print(TextInput::Merge("%s: %s", "Current block material is Unknown", std::to_string(uMat->type)));
+				clientInst->Print(TextInput::Merge("%s: %s", "isLiquid", std::to_string(uMat->isLiquid)));
+				break;
+			}
 
 			break;
 		}

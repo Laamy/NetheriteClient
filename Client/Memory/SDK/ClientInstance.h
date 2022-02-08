@@ -12,8 +12,8 @@ public:
 	};
 
 	auto getLocalPlayer() { //0x148
-		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("48 8B 81 ? ? ? ? C3 CC CC CC CC CC CC CC CC 48 89 91 ? ? ? ? C3") + 3);
-		return *reinterpret_cast<Actor**>((uintptr_t)(this) + offset);
+		//static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("48 8B 81 ? ? ? ? C3 CC CC CC CC CC CC CC CC 48 89 91 ? ? ? ? C3") + 3);
+		return Netherite::entitylist[1];
 	};
 
 	auto getGuiData() { //0x4D0
@@ -40,11 +40,11 @@ public:
 	};
 
 	auto getFovX() {
-		return reinterpret_cast<float*>((uintptr_t)(this) + 0x658); // cant make offset sigs for these
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x678); // cant make offset sigs for these
 	};
 
 	auto getFovY() {
-		return reinterpret_cast<float*>((uintptr_t)(this) + 0x66C);
+		return reinterpret_cast<float*>((uintptr_t)(this) + 0x68C);
 	};
 
 	auto getMatrix() {
@@ -52,7 +52,7 @@ public:
 		//static unsigned int b = *reinterpret_cast<int*>(MCM::findSig("? ? 83 ? ? ? ? ? ? 44 24 40 ? ? 83 ? ? ? ? ? ? 44 24 50") + 3);
 
 		//return reinterpret_cast<GLMatrix*>((uintptr_t)(this) + a + 0x10 + b); //0x300
-		return reinterpret_cast<GLMatrix*>((uintptr_t)(this) + 0x2D8); //0x300
+		return reinterpret_cast<GLMatrix*>((uintptr_t)(this) + 0x2F0); //0x300
 
 		//a = "48 8B 81 ? ? ? ? 48 85 C0 74 04 F0 FF 40 ? 48 8B 81 ? ? ? ? 48 89 42" + 3
 		//b = "? ? 83 ? ? ? ? ? ? 44 24 40 ? ? 83 ? ? ? ? ? ? 44 24 50" + 2
@@ -117,18 +117,6 @@ public:
 		return true;
 	}
 
-	auto getEntityList() {
-		std::map<uintptr_t, Actor*> _entitylist = std::map<uintptr_t, Actor*>();
-
-		for (auto entity : entitylist) {
-			if (entity.second == nullptr) continue;
-
-			_entitylist[entity.first] = entity.second;
-		}
-
-		return _entitylist;
-	};
-
 	auto Print(const char* txt) {
 		if (getLocalPlayer() == nullptr) return;
 		// testing
@@ -138,7 +126,7 @@ public:
 
 public: // custom
 	auto getGameFont() {
-		return mcGame->mcFont;
+		return mcGame->getMcFont();
 	};
 
 public: //vtable

@@ -1,5 +1,8 @@
 #include <cstdint>
 
+class Dimension;
+class Level;
+
 class Actor {
 public: // vtable shit
 	auto getVTable() {
@@ -92,7 +95,7 @@ public:
 	virtual void teleportTo(Vector3 const&, bool, int, int);
 	virtual void tryTeleportTo(Vector3 const&, bool, bool, int, int);
 	virtual void chorusFruitTeleport(Vector3 const&);
-	virtual void lerpMotion(Vector3 const&);
+	virtual void DONTUSETHISLERPMOTION(Vector3 const&);
 	virtual void tryCreateAddActorPacket(void);
 	virtual void normalTick(void);
 	virtual void baseTick(void);
@@ -105,7 +108,7 @@ public:
 	virtual TextHolder getExitTip(std::basic_string<char, std::char_traits<char>, std::allocator<char>> const&, class InputMode);
 	virtual void intersects(Vector3 const&, Vector3 const&);
 	virtual bool isInWall(void);
-	virtual bool isInvisible(void);
+	virtual bool DONTUSETHISISINVISIBLE(void);
 	virtual void canShowNameTag(void);
 	virtual void canExistInPeaceful(void);
 	virtual void setNameTagVisible(bool);
@@ -121,9 +124,9 @@ public:
 private:
 	virtual void TryroFunc74();
 public:
-	virtual bool isInWater(void);
+	virtual bool DONTUSETHISISINWATER(void);
 	virtual void hasEnteredWater(void);
-	virtual bool isInLava(void);
+	virtual bool DONTUSETHISISINLAVA(void);
 	virtual bool isUnderLiquid(class MaterialType);
 	virtual bool isOverWater(void);
 	virtual void setBlockMovementSlowdownMultiplier(Vector3 const&);
@@ -548,6 +551,11 @@ public:
 		return reinterpret_cast<float*>((uintptr_t)(this) + offset + sizeof(Vector3));
 	};
 
+	auto getRuntimeID() {
+		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("48 8B 82 ? ? ? ? 48 39 01") + 3);
+		return reinterpret_cast<uint64_t*>((uintptr_t)(this) + offset);
+	};
+
 	auto getPosition() {
 		static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("F3 ? ? 81 ? ? ? ? 41 ? ? 00") + 4);
 		return reinterpret_cast<AABB*>((uintptr_t)(this) + offset);
@@ -629,13 +637,16 @@ public:
 
 public: // MainClasses
 	auto getBlockSourcePtr() {
-		return *reinterpret_cast<int*>(MCM::findSig("48 8B 86 ? ? ? ? 48 8B 48 20 48 8B 01 FF 90 ? ? ? ? 48 8D 98 ? ? ? ? 80 7B 70 00") + 3);
+		//static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("48 8B 86 ? ? ? ? 48 8B 48 20 48 8B 01 FF 90 ? ? ? ? 48 8D 98 ? ? ? ? 80 7B 70 00") + 3);
+		return *reinterpret_cast<BlockSource**>((uintptr_t)(this) + 0x358);
 	};
 	auto getDimensionPtr() {
-		return getBlockSourcePtr() + 0x8;
+		//static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("48 8B 86 ? ? ? ? 48 8B 48 20 48 8B 01 FF 90 ? ? ? ? 48 8D 98 ? ? ? ? 80 7B 70 00") + 3);
+		return *reinterpret_cast<Dimension**>((uintptr_t)(this) + 0x358 + 0x8);
 	};
 	auto getLevelPtr() {
-		return getDimensionPtr() + 0x8;
+		//static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("48 8B 86 ? ? ? ? 48 8B 48 20 48 8B 01 FF 90 ? ? ? ? 48 8D 98 ? ? ? ? 80 7B 70 00") + 3);
+		return *reinterpret_cast<Level**>((uintptr_t)(this) + 0x358 + 0x8 + 0x8);
 	};
 
 public: // other

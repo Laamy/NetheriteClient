@@ -79,6 +79,11 @@
     <ClInclude Include="Netherite\Module\Modules\Timer.h" />
     <ClInclude Include="Memory\SDK\LoopbackSender.h" />
     <ClInclude Include="Netherite\Module\Modules\NoPacket.h" />
+    <ClInclude Include="Netherite\Module\Modules\ServerXP.h" />
+    <ClInclude Include="Netherite\Module\Modules\Nametags.h" />
+    <ClInclude Include="Memory\SDK\Player.h" />
+    <ClInclude Include="Memory\Netherite.h" />
+    <ClInclude Include="Netherite\Module\Modules\Enviroment.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
