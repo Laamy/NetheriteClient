@@ -235,8 +235,10 @@ void RenderContextCallback(void* a1, MinecraftUIRenderContext* ctx) {
 
     renderer->Init(ctx, guiDat, font); // setup render utils
 
-    _RCHook(a1, ctx);
+    //renderer->drawText(Vector2(50, 50), UIColor(255, 255, 255), TextHolder("Hello, world!"), 1);
 
+    
+    
     frames++;
     if (frames == 3) {
         frames = 0;
@@ -256,6 +258,10 @@ void RenderContextCallback(void* a1, MinecraftUIRenderContext* ctx) {
     for (auto mod : moduleManager.modules)
         if (mod->enabled)
             mod->onFrameRender(renderer);
+
+    
+
+    _RCHook(a1, ctx);
 }
 
 void KeymapCallback(uint64_t key, bool held) {

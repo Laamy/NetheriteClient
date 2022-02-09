@@ -22,9 +22,9 @@ public:
 		auto stdTrans = std::string(text);
 		auto textHolder = TextHolder(stdTrans);
 
-		auto measureData = ctx->getLineLength(font, &textHolder, scale);
+		//auto measureData = ctx->getLineLength(font, &textHolder, scale);
 
-		return measureData;
+		return 50;
 	};
 
 	void drawBackground(UIColor color) {
@@ -113,9 +113,9 @@ public:
 
 		TextHolder text(*textStr);
 
-		float ret = ctx->getLineLength(font, &text, textSize);
+		//float ret = ctx->getLineLength(font, &text, textSize);
 
-		return ret;
+		return 50;
 	};
 
 	void setColor(float r, float g, float b, float a) {
@@ -129,10 +129,17 @@ public:
 
 	void drawText(Vector2 position, UIColor color, TextHolder text, float measureCalc) {
 		auto size = Vector2(1000, 1000); // apply textbox size
-		auto rectangle = Vector4(position, size); // calculate rectangle area
+		const Vector4 rectangle = Vector4(position, size); // calculate rectangle area
 		auto caretData = CaretMeasureData(); // empty caret data
 
-		ctx->drawText(font, &rectangle, &text, color, color.a, nullptr, TextMeasureData(&measureCalc, hasShadow), &caretData);
+		auto tmd = TextMeasureData(&measureCalc, hasShadow);
+
+		auto _font = font;
+		auto _rectangle = rectangle;
+		auto _tmd = tmd;
+		auto _caretData = caretData;
+
+		ctx->drawText(*_font, _rectangle, text, color, color.a, 0, _tmd, _caretData);
 		ctx->flushText(0);
 	};
 
