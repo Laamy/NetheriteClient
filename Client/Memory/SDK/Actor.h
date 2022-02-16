@@ -343,7 +343,7 @@ public:
 	virtual void travel(float, float, float);
 	virtual void travel(class IMobMovementProxy&, float, float, float);
 	virtual void applyFinalFriction(float, bool);
-	virtual void updateWalkAnim(void);
+	//virtual void updateWalkAnim(void);
 	virtual void aiStep(void);
 	virtual void aiStep(IMobMovementProxy&);
 	virtual void pushActors(void);

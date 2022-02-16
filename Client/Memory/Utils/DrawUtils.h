@@ -134,12 +134,7 @@ public:
 
 		auto tmd = TextMeasureData(&measureCalc, hasShadow);
 
-		auto _font = font;
-		auto _rectangle = rectangle;
-		auto _tmd = tmd;
-		auto _caretData = caretData;
-
-		ctx->drawText(*_font, _rectangle, text, color, color.a, 0, _tmd, _caretData);
+		ctx->drawText(*font, rectangle, text, color, color.a, 0, tmd, caretData);
 		ctx->flushText(0);
 	};
 

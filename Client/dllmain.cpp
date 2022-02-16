@@ -230,14 +230,12 @@ void RenderContextCallback(void* a1, MinecraftUIRenderContext* ctx) {
 
     GameCursors::HandRenderer(renderer);
 
-    auto font = clientInst->mcGame->getMcFont();
+    auto font = clientInst->mcGame->defaultGameFont;
     auto guiDat = clientInst->getGuiData();
 
     renderer->Init(ctx, guiDat, font); // setup render utils
 
-    //renderer->drawText(Vector2(50, 50), UIColor(255, 255, 255), TextHolder("Hello, world!"), 1);
-
-    
+    //renderer->drawText(Vector2(50, 50), UIColor(255, 255, 255), TextHolder("Test"), 1);
     
     frames++;
     if (frames == 3) {
@@ -251,7 +249,7 @@ void RenderContextCallback(void* a1, MinecraftUIRenderContext* ctx) {
         for (auto mod : moduleManager.modules)
             if (mod->enabled && mod->name == "ClickGUI") {
                 mod->onThirdFrameRender(renderer);
-                *clientInst->getLocalPlayer()->getSwingState() = 0;
+                //*clientInst->getLocalPlayer()->getSwingState() = 0;
             }
     }
 

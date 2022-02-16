@@ -14,7 +14,11 @@ public:
 
 		bool pressed = clientInst->mcGame->canUseMoveKeys() && (w || a || s || d);
 		if (pressed) {
-			ci->getLocalPlayer()->setSprinting(true);
+			//_SendKey(GameInput::KEY_CTRL, true);
+		}
+		else
+		{
+			//_SendKey(GameInput::KEY_CTRL, false);
 		}
 	}
 };

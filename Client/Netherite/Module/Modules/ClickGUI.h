@@ -2,16 +2,9 @@
 
 class ClickGUI : public Module {
 public:
-	void* funcPtr;
-	void* ptr;
 	ClickGUI() : Module("ClickGUI", "Visual", "The menu ur literally in retard", GameInput::KEY_INSERT) {
-		uintptr_t address = MCM::findSig(GameSigs::SIG_StartDestroyBlock);
-		ptr = reinterpret_cast<void*>(address);
-		MH_CreateHook(this->ptr, startDestroyBlock, &this->funcPtr);
 		renderInArraylist = false;
 	}
-
-	static bool startDestroyBlock(GameMode* _this, class BlockPos* a2, unsigned __int8 side, bool* isDestroyedOut) { return false; }
 
 	static const struct ClickGUISortingArgs {
 		bool operator()(Module* mod1, Module* mod2)
@@ -129,11 +122,8 @@ public:
 			renderer->setShadow(false);
 		}
 	}
-	void onEnable() override {
-		MH_EnableHook(ptr);
-	}
+
 	void onDisable() override {
-		MH_DisableHook(ptr);
 		clientInst->releaseMouse();
 	}
 };

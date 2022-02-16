@@ -6,6 +6,7 @@ public:
 	Nametags() : Module("Nametags", "Visual", "Render a nametag above players heads", GameInput::KEY_NONE, false) {
 		addBoolean("Limit"); // Limit esp distance to 64 blocks
 		addBoolean("HitboxCheck", 0);
+		addBoolean("HitboxCheck", 0);
 	};
 
 	void onThirdFrameRender(DrawUtils* renderer) override {
@@ -58,7 +59,7 @@ public:
 					if (output.x < 0 || output.y < 0) continue;
 
 					TextHolder text;
-					text.setText(entity->DONTUSETHISNAMETAG().c_str());
+					text.setText(entity->getRawUsername()->getText());
 
 					float nameLength = renderer->MeasureText(text.getText(), 1);
 

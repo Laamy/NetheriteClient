@@ -1,30 +1,40 @@
 #pragma once
 
-class FontEntry {
+struct FontEntry {
 public:
-	BitmapFont* font;
+	class BitmapFont* font;
 };
 
-class FontList {
+struct FontList {
 public:
-	FontEntry fontEntries[12];
+	FontEntry fontEntries[7];
+
 };
 
-class FontRepos {
+struct FontRepos {
+private:
+	char pad_0x000[0x28];
 public:
-	FontList getFontList() {
-		return *reinterpret_cast<FontList*>((uintptr_t)(this) + 0x28);
-	};
+	FontList* fontList;
 };
 
 class MinecraftGame {
+private:
+	char pad_0x0000[0xF8]; //0x0000
+public:
+	FontRepos* fontRepos; //0x00F8
+private:
+	char pad_0x0100[0x20]; //0x0100
+public:
+	class BitmapFont* defaultGameFont; //0x0108
+
 public: // funcs
-	FontRepos getFontRepos() {
-		return *reinterpret_cast<FontRepos*>((uintptr_t)(this) + 0x120);
+	FontRepos* getFontRepos() {
+		return *reinterpret_cast<FontRepos**>((uintptr_t)(this) + 0xF8);
 	};
 
 	BitmapFont* getMcFont() {
-		return reinterpret_cast<BitmapFont*>((uintptr_t)(this) + 0x108 - 0x18);
+		return reinterpret_cast<BitmapFont*>((uintptr_t)(this) + 0x98);
 	};
 
 	bool canUseMoveKeys() {
@@ -33,6 +43,6 @@ public: // funcs
 	};
 
 	BitmapFont* getTestFont() {
-		return getFontRepos().getFontList().fontEntries[3].font; //8
+		return fontRepos->fontList->fontEntries[3].font; //8
 	};
 };

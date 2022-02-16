@@ -12,8 +12,15 @@ public:
 	};
 
 	auto getLocalPlayer() { //0x148
-		//static unsigned int offset = *reinterpret_cast<int*>(MCM::findSig("48 8B 81 ? ? ? ? C3 CC CC CC CC CC CC CC CC 48 89 91 ? ? ? ? C3") + 3);
-		return Netherite::entitylist[1];
+		static unsigned int offset = 0x138; // redoing this later
+		static unsigned int offset2 = 0xD0;
+		static unsigned int offset3 = 0x278;
+
+		Actor* plr1 = reinterpret_cast<Actor*>((uintptr_t)(this) + offset);
+		Actor* plr2 = reinterpret_cast<Actor*>((uintptr_t)(plr1) + 0xD0);
+		Actor* plr3 = reinterpret_cast<Actor*>((uintptr_t)(plr2) +0x278);
+
+		return plr3;
 	};
 
 	auto getGuiData() { //0x4D0
@@ -127,6 +134,18 @@ public:
 public: // custom
 	auto getGameFont() {
 		return mcGame->getMcFont();
+	};
+
+	void releaseMouse() {
+		rMouse();
+	};
+
+	void grabMouse() {
+		gMouse();
+	};
+
+	void refocusMouse() {
+		rfMouse();
 	};
 
 public: //vtable
@@ -403,8 +422,15 @@ private:
 	virtual void Function268(); //
 	virtual void Function269(); //
 	virtual void Function270(); //
+	virtual void Function271(); //
+	virtual void Function272(); //
+	virtual void Function273(); //
+	virtual void Function274(); //
+	virtual void Function275(); //
+	virtual void Function276(); //
+	virtual void Function277(); //
 public:
-	virtual void releaseMouse(); //271 (272)
-	virtual void grabMouse(); //272 (273)
-	virtual void refocusMouse(); //273 (274)
+	virtual void rMouse(); //278 (279)
+	virtual void gMouse(); //279 (280)
+	virtual void rfMouse(); //280 (281)
 }; 
